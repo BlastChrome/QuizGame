@@ -45,12 +45,13 @@ module.exports = {
     ],
   },
   devServer: {
+    liveReload: true,
     static: {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
     port: 9000, // You can specify your preferred port here
-    hot: true,
+    hot: false,
     open: true,
   },
 };
