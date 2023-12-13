@@ -48,12 +48,12 @@ $font-size-display: 9rem; // Was 48px
 $font-size-heading-l: 4rem; // Was 64px
 $font-size-heading-m: 2.25rem; // Was 36px
 $font-size-heading-s: 1.75rem; // Was 28px
+
 $font-size-body: 0.75rem; // Was 12px
-$font-size-body-s: 0.75rem; // Was 12px
 
 // Line heights
-$line-height-default: 1.5; // 150%
-$line-height-body: 1.5; // 150%, adjust to match specific value if needed
+$line-height-heading: 1; // 100%
+$line-height-body: 1.5; // 150%
 
 // Style variations
 $font-style-italic: italic;
@@ -62,21 +62,21 @@ $font-style-italic: italic;
 .text-display {
     font-family: $font-family-base;
     font-size: $font-size-display;
-    line-height: $line-height-default;
-    font-weight: $font-weight-regular;
+    line-height: $line-height-heading;
+    font-weight: $font-weight-medium;
 }
 
 .text-heading-l {
     font-family: $font-family-base;
     font-size: $font-size-heading-l;
-    line-height: $line-height-default;
+    line-height: $line-height-heading;
     font-weight: $font-weight-medium;
 }
 
 .text-heading-l-fwlight {
     font-family: $font-family-base;
     font-size: $font-size-heading-l;
-    line-height: $line-height-default;
+    line-height: $line-height-heading;
     font-weight: $font-weight-light;
 }
 
@@ -84,8 +84,22 @@ $font-style-italic: italic;
 .text-heading-m {
     font-family: $font-family-base;
     font-size: $font-size-heading-m;
-    line-height: $line-height-default;
+    line-height: $line-height-heading;
     font-weight: $font-weight-medium;
+}
+
+.text-heading-s {
+    font-family: $font-family-base;
+    font-size: $font-size-heading-s;
+    line-height: $line-height-heading;
+    font-weight: $font-weight-medium;
+}
+
+.text-body {
+    font-family: $font-family-base;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    font-weight: $font-weight-regular;
 }
 
 // Continue for other text styles...
