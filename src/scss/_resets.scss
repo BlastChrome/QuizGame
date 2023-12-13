@@ -1,0 +1,80 @@
+// resets 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15; // A more reasonable default line height
+    -webkit-text-size-adjust: 100%; // Prevent font scaling in landscape while allowing user zoom
+}
+
+body {
+    margin: 0; // Remove the margin in all browsers
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit; // You want heading sizes to be controlled by your own styles
+    margin: 0; // Remove default margin
+}
+
+p {
+    margin: 0; // Remove the space added by default
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+    display: block;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit; // Font inheritance for form elements
+    font-size: 100%; // Correct the font size for form elements
+    line-height: 1.15; // Correct the line height in all browsers
+    margin: 0; // Remove margin for form elements
+}
+
+button,
+input {
+    // Remove the inner border and padding in Firefox
+    overflow: visible;
+}
+
+button,
+select {
+    // Correct the inability to style clickable types in iOS
+    text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button; // Correct the padding in Firefox
+}
+
+img {
+    border-style: none; // Remove border on images by default
+}
+
+textarea {
+    overflow: auto; // Remove default vertical scrollbar in IE
+}
+
+[hidden] {
+    display: none; // Ensure `hidden` is treated as such
+}
