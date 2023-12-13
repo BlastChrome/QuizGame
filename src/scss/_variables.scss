@@ -1,4 +1,4 @@
-// Variables
+// Color Variables
 $purple: #A729F5;
 $green: #26D782;
 $red: #EE5454;
@@ -34,3 +34,50 @@ $colors-dark: (
     primary: $purple,
     hover: linear-gradient(0deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%) $purple,
 );
+
+// Font family
+$font-family-base: 'Rubik', sans-serif;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+
+// Font sizes
+$font-size-display: 9rem; // Was 48px
+$font-size-heading-l: 4rem; // Was 64px
+$font-size-heading-m: 2.25rem; // Was 36px
+$font-size-heading-s: 1.75rem; // Was 28px
+$font-size-body: 0.75rem; // Was 12px
+$font-size-body-s: 0.75rem; // Was 12px
+
+// Line heights
+$line-height-default: 1.5; // 150%
+$line-height-body: 1.5; // 150%, adjust to match specific value if needed
+
+// Style variations
+$font-style-italic: italic;
+
+// Text styles
+.text-display {
+    font-family: $font-family-base;
+    font-size: $font-size-display;
+    line-height: $line-height-default;
+    font-weight: $font-weight-regular;
+}
+
+.text-heading-l {
+    font-family: $font-family-base;
+    font-size: $font-size-heading-l;
+    line-height: $line-height-default;
+    font-weight: $font-weight-medium;
+}
+
+.text-heading-m {
+    font-family: $font-family-base;
+    font-size: $font-size-heading-m;
+    line-height: $line-height-default;
+    font-weight: $font-weight-medium;
+}
+
+// Continue for other text styles...
