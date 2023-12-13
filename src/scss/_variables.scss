@@ -73,6 +73,14 @@ $font-style-italic: italic;
     font-weight: $font-weight-medium;
 }
 
+.text-heading-l-fwlight {
+    font-family: $font-family-base;
+    font-size: $font-size-heading-l;
+    line-height: $line-height-default;
+    font-weight: $font-weight-light;
+}
+
+
 .text-heading-m {
     font-family: $font-family-base;
     font-size: $font-size-heading-m;
