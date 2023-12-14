@@ -68,13 +68,25 @@ $font-style-italic: italic;
 // Media queries for specific breakpoints
 @media (min-width: 768px) {
 
+    .text-display {
+        font-size: 9rem; // 144px
+    }
+
     .text-heading-l,
     .text-heading-l-fwlight {
-        font-size: 4rem;
+        font-size: 4rem; // 64px
     }
 
     .text-heading-m {
-        font-size: 2rem;
+        font-size: 2.25rem; // 36px
+    }
+
+    .text-heading-s {
+        font-size: 1.75rem; // 28px
+    }
+
+    .text-body {
+        font-size: 1.25rem; // 20px
     }
 
 }
