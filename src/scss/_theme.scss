@@ -23,3 +23,13 @@ $colors-dark: (
     primary: $purple,
     hover: linear-gradient(0deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%) $purple,
 );
+
+body {
+    background-color: map-get($colors-light, 'bg-color');
+    color: map-get($colors-light, 'primary-text-color');
+
+    &.dark-theme {
+        background-color: map-get($colors-dark, 'bg-color');
+        color: map-get($colors-dark, 'primary-text-color');
+    }
+}
