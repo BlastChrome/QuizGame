@@ -67,6 +67,12 @@ button,
     -webkit-appearance: button; // Correct the padding in Firefox
 }
 
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 img {
     border-style: none; // Remove border on images by default
 }
