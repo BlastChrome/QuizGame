@@ -7,12 +7,12 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;
 
 // Font sizes
-$font-size-display: 9rem;
+$font-size-display: 5.5rem; // 88px
 $font-size-heading-l: 2.5rem; // 40px
 $font-size-heading-m: 1.25rem; // 20px
-$font-size-heading-s: 0.875rem; // 14px
+$font-size-heading-s: 1.75rem; // 28px
 
-$font-size-body: 1.125rem; // 18px
+$font-size-body: 0.875; // 14px
 
 // Line heights
 $line-height-heading: 1;
@@ -63,4 +63,18 @@ $font-style-italic: italic;
     font-size: $font-size-body;
     line-height: $line-height-body;
     font-weight: $font-weight-regular;
+}
+
+// Media queries for specific breakpoints
+@media (min-width: 768px) {
+
+    .text-heading-l,
+    .text-heading-l-fwlight {
+        font-size: 4rem;
+    }
+
+    .text-heading-m {
+        font-size: 2rem;
+    }
+
 }
