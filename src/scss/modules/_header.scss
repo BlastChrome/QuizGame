@@ -2,4 +2,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 1rem;
+    height: 56px;
+
+    &__header-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 167px;
+
+        &__icon {
+            background-color: $purple-light;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 }
