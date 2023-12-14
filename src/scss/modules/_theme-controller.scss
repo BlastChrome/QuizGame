@@ -1,0 +1,55 @@
+.theme-controller {
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 80px;
+    justify-content: space-between;
+
+    &__toggle {
+        &:focus-within .theme-controller__toggle-circle {
+            box-shadow: 0 0 1px $purple;
+            outline: -webkit-focus-ring-color auto 1px;
+        }
+    }
+
+    &__checkbox {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked~.theme-controller__toggle-circle:before {
+            transform: translateX(100%);
+        }
+    }
+
+    &__toggle-circle {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $purple;
+        -webkit-transition: transform 0.4s;
+        transition: transform 0.4s;
+        border-radius: 999px;
+        width: 32px;
+        height: 20px;
+        margin: 0 auto;
+
+        &:before {
+            position: absolute;
+            content: "";
+            width: 12px;
+            height: 12px;
+            left: 4px;
+            bottom: 4px;
+            background-color: $white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
+    }
+}
