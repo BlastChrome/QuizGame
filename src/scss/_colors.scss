@@ -8,29 +8,3 @@ $light-blue: #ABC1E1;
 $light-grey: #F4F6FA;
 $white: #FFFFFF;
 $navy: #3B4D66;
-
-// Define a color map for light theme
-$colors-light: (
-    primary-text-color: $dark-navy,
-    secondary-text-color: $grey-navy,
-    bg-color: $light-grey,
-    option-bg-color: $white,
-    theme-icon-color: $grey-navy,
-    success: $green,
-    failure: $red,
-    primary: $purple,
-    hover: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%) $purple,
-);
-
-// Define a color map for dark theme
-$colors-dark: (
-    primary-text-color: $white,
-    secondary-text-color: $light-blue,
-    bg-color: $dark-navy,
-    option-bg-color: $navy,
-    theme-icon-color: $white,
-    success: $green,
-    failure: $red,
-    primary: $purple,
-    hover: linear-gradient(0deg, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%) $purple,
-);
