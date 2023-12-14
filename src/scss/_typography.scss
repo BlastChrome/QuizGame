@@ -15,9 +15,6 @@
 
 // Font family
 $font-family-base: 'Rubik', sans-serif;
-
-
-
 // Font weights
 $font-weight-light: 300;
 $font-weight-regular: 400;
@@ -32,8 +29,8 @@ $font-size-heading-s: 1.75rem; // 28px
 $font-size-body: 0.875rem; // 14px
 
 // Line heights
-$line-height-heading: 1;
-$line-height-body: 1.5;
+$line-height-heading: 1; // 100%
+$line-height-body: 1.5; // 150%
 
 // Style variations
 $font-style-italic: italic;
@@ -59,7 +56,6 @@ $font-style-italic: italic;
     line-height: $line-height-heading;
     font-weight: $font-weight-light;
 }
-
 
 .text-heading-m {
     font-family: $font-family-base;
@@ -105,7 +101,6 @@ $font-style-italic: italic;
     .text-body {
         font-size: 1.25rem; // 20px
     }
-
 }
 
 @media (min-width: 1024px) {
