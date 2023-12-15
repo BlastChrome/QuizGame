@@ -1,3 +1,19 @@
+body {
+    &.dark-theme {
+        .theme-controller {
+            &__icon {
+                svg {
+                    path {
+                        fill: map-get($colors-dark, 'primary-text-color');
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
 .theme-controller {
     position: relative;
     display: flex;
