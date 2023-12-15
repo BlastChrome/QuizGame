@@ -1,0 +1,18 @@
+.content {
+    padding-top: 3.05rem;
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        height: 7.75rem;
+        justify-content: space-between;
+    }
+
+    &__right {}
+}
+
+@media (min-width: 768px) {
+    .content__left {
+        height: 11.375rem;
+    }
+}
