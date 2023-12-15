@@ -25,11 +25,24 @@ $colors-dark: (
 );
 
 body {
+
+    // Theme colors
     background-color: map-get($colors-light, 'bg-color');
     color: map-get($colors-light, 'primary-text-color');
+
+    .text-body,
+    .text-body-italic {
+        color: map-get($colors-light, 'secondary-text-color');
+    }
 
     &.dark-theme {
         background-color: map-get($colors-dark, 'bg-color');
         color: map-get($colors-dark, 'primary-text-color');
+
+        .text-body,
+        .text-body-italic {
+            color: map-get($colors-dark, 'secondary-text-color');
+        }
     }
+
 }
