@@ -78,6 +78,14 @@ $font-style-italic: italic;
     font-weight: $font-weight-regular;
 }
 
+.text-body-italic {
+    font-family: $font-family-base;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    font-weight: $font-weight-regular;
+    font-style: $font-style-italic;
+}
+
 // Media queries for specific breakpoints
 @media (min-width: 768px) {
 
@@ -98,7 +106,8 @@ $font-style-italic: italic;
         font-size: 1.75rem; // 28px
     }
 
-    .text-body {
+    .text-body,
+    .text-body-italic {
         font-size: 1.25rem; // 20px
     }
 }
@@ -122,7 +131,8 @@ $font-style-italic: italic;
         font-size: 1.75rem; // 28px 
     }
 
-    .text-body {
+    .text-body,
+    .text-body-italic {
         font-size: 1.25rem; // 24px
     }
 }
