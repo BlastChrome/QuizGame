@@ -16,3 +16,9 @@
         padding: 0 8.75rem; // 96px left and right
     }
 }
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1440px;
+    }
+}
