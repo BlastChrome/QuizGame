@@ -9,15 +9,39 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 167px;
+        max-width: 167px;
+        width: 100%;
 
         &__icon {
             padding: 0.356875rem 0;
             background-color: $purple-light;
-            width: 40px;
+            max-width: 40px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        height: auto;
+        min-height: 56px;
+        padding-top: 2.5rem;
+
+        &__header-left {
+            max-width: 253px;
+
+            &__icon {
+                padding: 0.5rem;
+                max-width: 56px;
+
+                svg {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
         }
     }
 }
