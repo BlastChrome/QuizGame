@@ -86,3 +86,15 @@ body {
         }
     }
 }
+
+@media (min-width: 1440px) {
+    .choice {
+        margin-top: 0;
+
+        &__selector {
+            max-width: 564px;
+            margin-left: 23px;
+            min-height: 100px
+        }
+    }
+}
