@@ -26,7 +26,7 @@ body {
         cursor: pointer;
         display: flex;
         align-items: center;
-        margin-bottom: 11.8px;
+        margin-bottom: 0.7375rem;
         min-height: 64px;
         padding: 0 12px;
         border-radius: 20px;
@@ -62,6 +62,27 @@ body {
 
         &--ada {
             background-color: $ada-bg-color;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .choice {
+        margin-top: 4rem;
+
+        &__selector {
+            min-height: 84px;
+            margin-bottom: 1.25rem;
+        }
+
+        &__icon {
+            margin-right: 1.8rem;
+            max-width: 56px;
+
+            svg {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
         }
     }
 }
