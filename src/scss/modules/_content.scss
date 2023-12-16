@@ -1,18 +1,32 @@
 .content {
     padding-top: 3.05rem;
 
-    &__left {
-        display: flex;
-        flex-direction: column;
-        height: 7.75rem;
-        justify-content: space-between;
+    &__title:nth-of-type(1) {
+        padding: 0 0 0.5rem;
     }
 
-    &__right {}
+    &__text {
+        padding: 1rem 0 0;
+    }
+
 }
 
-@media (min-width: 768px) {
-    .content__left {
-        height: 11.375rem;
+@media (min-width: 768px) {}
+
+@media (min-width: 1024px) {}
+
+@media (min-width: 1440px) {
+    .content {
+        padding-top: 5.25rem;
+        display: flex;
+
+        &__left,
+        &__right {
+            width: 50%;
+        }
+
+        &__text {
+            padding: 3rem 0 0;
+        }
     }
 }
