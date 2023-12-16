@@ -4,6 +4,7 @@ $colors-light: (
     secondary-text-color: $grey-navy,
     bg-color: $light-grey,
     option-bg-color: $white,
+    option-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14),
     theme-icon-color: $grey-navy,
     success: $green,
     failure: $red,
@@ -17,6 +18,7 @@ $colors-dark: (
     secondary-text-color: $light-blue,
     bg-color: $dark-navy,
     option-bg-color: $navy,
+    option-shadow: 0px 16px 40px 0px rgba(49, 62, 81, 0.14),
     theme-icon-color: $white,
     success: $green,
     failure: $red,
@@ -30,6 +32,11 @@ body {
     background-color: map-get($colors-light, 'bg-color');
     color: map-get($colors-light, 'primary-text-color');
 
+    // Typography Theme Switching
+    .text-heading-s {
+        color: map-get($colors-light, 'primary-text-color');
+    }
+
     .text-body,
     .text-body-italic {
         color: map-get($colors-light, 'secondary-text-color');
@@ -39,10 +46,15 @@ body {
         background-color: map-get($colors-dark, 'bg-color');
         color: map-get($colors-dark, 'primary-text-color');
 
+        .text-heading-s {
+            color: map-get($colors-dark, 'primary-text-color');
+        }
+
         .text-body,
         .text-body-italic {
             color: map-get($colors-dark, 'secondary-text-color');
         }
+
     }
 
 }
