@@ -12,6 +12,9 @@ html {
 
 body {
     margin: 0; // Remove the margin in all browsers
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
 }
 
 h1,
