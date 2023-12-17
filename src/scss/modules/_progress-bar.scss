@@ -1,0 +1,69 @@
+body {
+    .progress-bar {
+        background-color: map-get($colors-light, 'option-bg-color');
+    }
+
+    &.dark-theme {
+        .progress-bar {
+            background-color: map-get($colors-dark, 'option-bg-color');
+        }
+    }
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    padding: 0;
+    border-radius: 20px;
+    margin-top: 1.75rem;
+    margin-left: 0.25rem;
+
+    &__fill {
+        border-radius: 20px;
+        background-color: $purple;
+        width: 0%;
+        height: 0.5rem;
+        transition: width 0.4s ease;
+
+        &--10 {
+            width: 10%;
+        }
+
+        &--20 {
+            width: 20%;
+        }
+
+        &--30 {
+            width: 30%;
+        }
+
+        &--40 {
+            width: 40%;
+        }
+
+        &--50 {
+            width: 50%;
+        }
+
+        &--60 {
+            width: 60%;
+        }
+
+        &--70 {
+            width: 70%;
+        }
+
+        &--80 {
+            width: 80%;
+        }
+
+        &--90 {
+            width: 90%;
+        }
+
+        &--100 {
+            width: 100%;
+        }
+    }
+}
