@@ -35,8 +35,18 @@ body {
 
         &:hover {
             border: 3px solid $purple;
+
+            .choice__icon__text {
+                color: $white;
+            }
+
+            .choice__icon--selection {
+                background-color: $purple;
+            }
         }
     }
+
+
 
     &__icon {
         padding: 0.356875rem 0;
@@ -47,6 +57,16 @@ body {
         justify-content: center;
         border-radius: 3px;
         margin-right: 1.1rem;
+        transition: background-color 0.2s ease-in-out;
+
+        &__text:hover {
+            color: $white;
+        }
+
+        &--selection:hover {
+            background-color: $purple;
+            color: $white;
+        }
 
         &--html {
             background-color: $html-bg-color;

@@ -1,0 +1,28 @@
+.ellipse,
+.ellipse-2 {
+    position: absolute;
+    width: 977px;
+    height: 977px;
+    background-color: $white;
+    z-index: 0;
+    border-radius: 100%;
+    border: 143px solid $ellipse;
+
+}
+
+.ellipse {
+
+    transform: translate(-60.5%, -17.9%);
+    // desktop styling
+    // left: 0;
+    // top: 0;
+    // transform: translate(-55%, -42%);
+}
+
+.ellipse-2 {
+    display: none;
+    // desktop styling
+    // bottom: 0;
+    // right: 0;
+    // transform: translate(40%, 40%);
+}
