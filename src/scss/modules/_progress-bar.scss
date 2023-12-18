@@ -1,23 +1,24 @@
 body {
     .progress-bar {
         background-color: map-get($colors-light, 'option-bg-color');
+        border: 5px solid map-get($colors-light, 'option-bg-color');
     }
 
     &.dark-theme {
         .progress-bar {
             background-color: map-get($colors-dark, 'option-bg-color');
+            border: 5px solid map-get($colors-dark, 'option-bg-color');
         }
     }
 }
 
 .progress-bar {
     width: 100%;
-    background-color: #fff;
     height: auto;
-    padding: 0;
+    padding: 0rem;
     border-radius: 20px;
-    margin-top: 1.75rem;
-    margin-left: 0.25rem;
+    margin-top: 1.45rem;
+    margin-left: 0;
 
     &__fill {
         border-radius: 20px;
