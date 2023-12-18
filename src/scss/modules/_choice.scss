@@ -27,29 +27,20 @@ body {
         display: flex;
         align-items: center;
         margin-bottom: 0.7375rem;
-        min-height: 64px;
+        min-height: 66px;
         padding: 0 12px;
-        border-radius: 20px;
+        border-radius: 10px;
         border: 3px solid transparent;
         transition: border 0.2s ease-in-out;
-
-        &:hover {
-            border: 3px solid $purple;
-
-            .choice__icon__text {
-                color: $white;
-            }
-
-            .choice__icon--selection {
-                background-color: $purple;
-            }
-        }
     }
 
 
+    &__title {
+        margin-top: 0.356875rem;
+    }
 
     &__icon {
-        padding: 0.356875rem 0;
+        margin-top: 0.356875rem;
         max-width: 35px;
         width: 100%;
         display: flex;
