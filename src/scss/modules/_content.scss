@@ -16,7 +16,13 @@
 
 }
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .content {
+        &__subtitle {
+            padding: 1.7rem 0 0;
+        }
+    }
+}
 
 @media (min-width: 1024px) {}
 
