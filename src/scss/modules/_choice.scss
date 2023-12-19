@@ -4,6 +4,12 @@ body {
             background-color: map-get($colors-light, 'option-bg-color');
             box-shadow: map-get($colors-light, 'option-shadow');
         }
+
+        &__icon {
+            &__text {
+                color: $grey-navy;
+            }
+        }
     }
 
     &.dark-theme {
@@ -12,10 +18,15 @@ body {
                 background-color: map-get($colors-dark, 'option-bg-color');
                 box-shadow: map-get($colors-dark, 'option-shadow');
             }
+
+            &__icon {
+                &__text {
+                    color: $grey-navy;
+                }
+            }
         }
     }
 }
-
 
 .choice {
     display: flex;
@@ -31,9 +42,21 @@ body {
         padding: 0 12px;
         border-radius: 10px;
         border: 3px solid transparent;
+        background-color: $white;
         transition: border 0.2s ease-in-out;
-    }
 
+        &:hover {
+            .choice__icon {
+                background-color: $purple;
+
+                &__text {
+                    color: $white;
+                }
+            }
+
+            border: 3px solid $purple;
+        }
+    }
 
     &__title {
         margin-top: 0.356875rem;
@@ -42,6 +65,7 @@ body {
     &__icon {
         margin-top: 0.356875rem;
         max-width: 35px;
+        min-height: 35px;
         width: 100%;
         display: flex;
         align-items: center;
@@ -49,10 +73,7 @@ body {
         border-radius: 3px;
         margin-right: 1.1rem;
         transition: background-color 0.2s ease-in-out;
-
-        &__text:hover {
-            color: $white;
-        }
+        background-color: $light-grey;
 
         &--selection:hover {
             background-color: $purple;
@@ -89,6 +110,7 @@ body {
         &__icon {
             margin-right: 1.8rem;
             max-width: 56px;
+            min-height: 56px;
 
             svg {
                 width: 2.5rem;
