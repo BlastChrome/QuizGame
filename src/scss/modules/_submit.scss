@@ -1,0 +1,26 @@
+body {
+    .submit.text-heading-s {
+        color: map-get($colors-light, 'option-bg-color');
+    }
+
+    &.dark-theme {
+        .submit.text-heading-s {
+            color: map-get($colors-dark, 'theme-icon-color');
+        }
+    }
+}
+
+.submit {
+    background-color: #A729F5;
+    padding: 0;
+    border-radius: 10px;
+    height: 3.3rem;
+}
+
+
+@media (min-width: 768px) {
+    .submit {
+        height: 5.8rem;
+        margin-top: 0.5rem;
+    }
+}
