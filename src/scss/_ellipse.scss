@@ -2,7 +2,6 @@ body {
 
     .ellipse,
     .ellipse-2 {
-        background-color: map-get($colors-light, 'ellipse-bg-color');
         border: 143px solid map-get($colors-light, 'ellipse-border-color');
     }
 
@@ -10,7 +9,6 @@ body {
 
         .ellipse,
         .ellipse-2 {
-            background-color: map-get($colors-dark, 'ellipse-bg-color');
             border: 143px solid map-get($colors-dark, 'ellipse-border-color');
         }
     }
@@ -22,15 +20,13 @@ body {
     position: absolute;
     width: 977px;
     height: 977px;
-    // background-color: $white;
+    background-color: transparent;
     z-index: 0;
     border-radius: 100%;
-    // border: 143px solid $ellipse-light;
 
 }
 
 .ellipse {
-
     transform: translate(-60.5%, -17.9%);
     // desktop styling
     // left: 0;
