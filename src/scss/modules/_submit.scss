@@ -11,10 +11,11 @@ body {
 }
 
 .submit {
-    background-color: #A729F5;
+    background-color: $purple;
     padding: 0;
     border-radius: 1.5rem;
     height: 3.3rem;
+    width: 100%;
 }
 
 
@@ -22,5 +23,13 @@ body {
     .submit {
         height: 5.8rem;
         margin-top: 0.5rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .submit {
+        max-width: 564px;
+        margin-left: 23px;
+        margin-top: 0;
     }
 }
