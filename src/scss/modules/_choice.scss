@@ -3,7 +3,17 @@ body {
         &__selector {
             background-color: map-get($colors-light, 'option-bg-color');
             box-shadow: map-get($colors-light, 'option-shadow');
+
+            &:hover {
+                .choice__icon--selection {
+                    .choice__icon__text {
+                        color: $white;
+                    }
+                }
+            }
         }
+
+
 
         &__icon {
             &__text {
@@ -17,6 +27,14 @@ body {
             &__selector {
                 background-color: map-get($colors-dark, 'option-bg-color');
                 box-shadow: map-get($colors-dark, 'option-shadow');
+
+                &:hover {
+                    .choice__icon--selection {
+                        .choice__icon__text {
+                            color: $white;
+                        }
+                    }
+                }
             }
 
             &__icon {
@@ -102,7 +120,7 @@ body {
         }
 
         &:hover {
-            .choice__icon {
+            .choice__icon--selection {
                 background-color: $purple;
 
                 &__text {
