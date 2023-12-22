@@ -41,3 +41,19 @@ body {
     // right: 0;
     // transform: translate(40%, 40%);
 }
+
+
+@media (min-width: 1024px) {
+    .ellipse {
+        left: 0;
+        top: 0;
+        transform: translate(-55%, -42%);
+    }
+
+    .ellipse-2 {
+        display: block;
+        bottom: 0;
+        right: 0;
+        transform: translate(40%, 40%);
+    }
+}
