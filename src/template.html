@@ -39,7 +39,7 @@
         <section class="content" id="content">
             <div class="content__left">
 
-                <!-- start screen text -->
+                <!-- start screen Title text -->
                 <!-- <h2 class="content__title text-heading-l-fwlight">Welcome to the</h2>
                 <h2 class="content__title text-heading-l">Frontend Quiz!</h2>
                 <p class="content__text text-body-italic">Pick a subject to get started.</p>  -->
@@ -54,6 +54,7 @@
             <div class="content__right">
                 <!-- Start Choices -->
                 <div id="choice" class="choice">
+                    <!-- Start Screen -->
                     <!-- <button class="choice__selector" aria-label="Select HTML Quiz">
                         <div class="choice__icon choice__icon--html" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -90,15 +91,15 @@
                         <h3 class="choice__title text-heading-s">Accessibility</h3>
                     </button>   -->
 
-                    <!-- Question selection -->
-                    <button class="choice__selector" aria-label="Option A">
+                    <!-- Question selection Default -->
+                    <!-- <button class="choice__selector " aria-label="Option A">
                         <div class="choice__icon choice__icon--selection" aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">A</p>
                         </div>
                         <h3 class="choice__title text-heading-s">4.5 : 1</h3>
                     </button> 
 
-                    <button class="choice__selector" aria-label="Option B">
+                    <button class="choice__selector " aria-label="Option B">
                         <div class="choice__icon choice__icon--selection" aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">B</p>
                         </div>
@@ -119,7 +120,38 @@
                         <h3 class="choice__title text-heading-s">5 : 1</h3>
                     </button>  
 
-                    <button id="submit" class="submit text-heading-s" aria-label="submit button">Submit Answer</button>
+                    <button id="submit" class="submit text-heading-s" aria-label="submit button">Submit Answer</button> -->
+
+                    <!-- Question selection Pass / Fail -->
+                    <button class="choice__selector choice__selector--pass" aria-label="Option A">
+                        <div class="choice__icon choice__icon--selection" aria-hidden="true">
+                            <p class="text-heading-s choice__icon__text">A</p>
+                        </div>
+                        <h3 class="choice__title text-heading-s">4.5 : 1</h3>
+                    </button> 
+
+                    <button class="choice__selector choice__selector--fail" aria-label="Option B">
+                        <div class="choice__icon choice__icon--selection" aria-hidden="true">
+                            <p class="text-heading-s choice__icon__text">B</p>
+                        </div>
+                        <h3 class="choice__title text-heading-s">3 : 1</h3> 
+                    </button>   
+
+                    <button class="choice__selector" aria-label="Option C">
+                        <div class="choice__icon choice__icon--selection" aria-hidden="true">
+                            <p class="text-heading-s choice__icon__text">C</p>
+                        </div>
+                        <h3 class="choice__title text-heading-s">2.5 : 1</h3>
+                    </button>   
+
+                    <button class="choice__selector" aria-label="Option D">
+                        <div class="choice__icon choice__icon--selection"  aria-hidden="true">
+                            <p class="text-heading-s choice__icon__text">D</p>
+                        </div>
+                        <h3 class="choice__title text-heading-s">5 : 1</h3>
+                    </button>  
+
+                    <button id="submit" class="submit text-heading-s" aria-label="submit button">Next Question</button>
 
                 </div>
             </div>
