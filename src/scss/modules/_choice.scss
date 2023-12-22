@@ -40,10 +40,66 @@ body {
         margin-bottom: 0.6125rem;
         min-height: 66px;
         padding: 0 12px;
-        border-radius: 1.5rem;
+        border-radius: 0.5rem;
         border: 3px solid transparent;
         background-color: $white;
         transition: border 0.2s ease-in-out;
+
+        &--pass,
+        &--fail {
+            position: relative;
+        }
+
+        &--pass:after,
+        &--fail:after {
+            text-align: center;
+            line-height: 1;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding: 4px;
+            transform: translate(-33%, 56%);
+        }
+
+        &--pass:after {
+            content: '';
+            background-image: url('../assets/images/check.svg');
+        }
+
+        &--fail:after {
+            content: '';
+            background-image: url('../assets/images/cross.svg');
+        }
+
+        &--pass {
+            .choice__icon {
+                background-color: $green;
+
+                &__text {
+                    color: $white;
+                }
+            }
+        }
+
+        &--fail {
+            border-color: $red;
+
+            .choice__icon {
+                background-color: $red;
+
+                &__text {
+                    color: $white;
+                }
+            }
+        }
 
         &:hover {
             .choice__icon {
@@ -54,7 +110,7 @@ body {
                 }
             }
 
-            border: 3px solid $purple;
+            border-color: $purple;
         }
     }
 
