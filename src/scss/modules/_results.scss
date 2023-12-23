@@ -19,57 +19,88 @@ body {
         }
     }
 
+}
+
+.results {
+    text-align: center;
+    min-height: 240px;
+    margin-bottom: 0.9rem;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__icon {
+        margin-top: 0;
+        max-width: 40px;
+        min-height: 40px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        margin-right: 1rem;
+        transition: background-color 0.2s ease-in-out;
+
+        &--html {
+            background-color: $html-bg-color;
+        }
+
+        &--css {
+            background-color: $css-bg-color;
+        }
+
+        &--js {
+            background-color: $js-bg-color;
+        }
+
+        &--ada {
+            background-color: $ada-bg-color;
+        }
+    }
+
+    &__row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--row-1 {
+            padding: 1.9rem 0 0;
+        }
+
+        &--row-2 {
+            padding: 1rem 0 0;
+        }
+
+        &--row-3 {
+            padding: 0.9rem 0 0;
+        }
+    }
+}
+
+@media (min-width: 768px) {
     .results {
-        text-align: center;
-        min-height: 240px;
-        margin-bottom: 1rem;
-        border-radius: 0.75rem;
+        display: block;
+        min-height: 400px;
 
         &__icon {
-            margin-top: 0.356875rem;
-            max-width: 35px;
-            min-height: 35px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 3px;
-            margin-right: 1.1rem;
-            transition: background-color 0.2s ease-in-out;
-            background-color: $light-grey;
+            max-width: 51px;
+            min-height: 51px;
+            margin-right: 1.7rem;
 
-            &--html {
-                background-color: $html-bg-color;
-            }
-
-            &--css {
-                background-color: $css-bg-color;
-            }
-
-            &--js {
-                background-color: $js-bg-color;
-            }
-
-            &--ada {
-                background-color: $ada-bg-color;
+            svg {
+                width: 40px;
+                height: 40px;
             }
         }
 
         &__row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
             &--row-1 {
-                padding: 1.9rem 0 0;
+                padding: 3.2rem 0 0;
             }
 
             &--row-2 {
-                padding: 1rem 0 0;
-            }
-
-            &--row-3 {
-                padding: 0.9rem 0 0;
+                padding: 2.8rem 0 0;
             }
         }
     }
