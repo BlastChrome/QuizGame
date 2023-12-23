@@ -7,13 +7,21 @@ body {
             &:hover {
                 .choice__icon--selection {
                     .choice__icon__text {
+                        color: $purple;
+                    }
+                }
+            }
+
+            &:active {
+                .choice__icon--selection {
+                    background-color: $purple;
+
+                    .choice__icon__text {
                         color: $white;
                     }
                 }
             }
         }
-
-
 
         &__icon {
             &__text {
@@ -30,6 +38,16 @@ body {
 
                 &:hover {
                     .choice__icon--selection {
+                        .choice__icon__text {
+                            color: $purple;
+                        }
+                    }
+                }
+
+                &:active {
+                    .choice__icon--selection {
+                        background-color: $purple;
+
                         .choice__icon__text {
                             color: $white;
                         }
@@ -121,11 +139,14 @@ body {
 
         &:hover {
             .choice__icon--selection {
-                background-color: $purple;
+                background-color: $ada-bg-color;
+            }
 
-                &__text {
-                    color: $white;
-                }
+        }
+
+        &:active {
+            .choice__icon--selection {
+                background-color: $purple;
             }
 
             border-color: $purple;
