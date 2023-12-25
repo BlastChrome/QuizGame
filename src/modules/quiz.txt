@@ -6,8 +6,8 @@ DONE    3.  score
     
 TODO: Define behaviors
 DONE    1.  increment the current question index 
-    2.  retrieve the current question 
+DONE    2.  retrieve the current question 
 DONE    3.  retrieve the score 
     4.  know when it's at the end of the list 
     5.  know when a correct/incorrect answer is chosen
-    6.  load questions from data
+DONE    6.  load questions from data

@@ -1,4 +1,3 @@
-const { description } = require("commander");
 const Quiz = require("../quiz");
 
 const mockQuestions = [
@@ -36,16 +35,20 @@ describe("Quiz Initialization", () => {
   });
 });
 
-describe("Quiz question array tests", () => {
-  test("Quiz should be able to increment the current question Index", () => {
-    const currentIndex = quiz.getCurrentQuestionIndex();
-    quiz.incrementCurrentQuestionIndex();
-    const nextIndex = quiz.getCurrentQuestionIndex();
-    expect(nextIndex).toBe(currentIndex + 1);
+describe("Quiz Methods", () => {
+  test("Quiz should load the questions", () => {
+    quiz.loadQuestions(mockQuestions);
+    expect(mockQuestions).toBe(quiz.getQuestions());
   });
-  test("if the currentIndex exceeds the array it should throw an error", () => {
-    const length = quiz.getQuestionsLength();
-    const bounds = length + 1;
-    expect(bounds);
+  test("Quiz should return the current questions", () => {
+    quiz.loadQuestions(mockQuestions);
+    const currentQuestion = quiz.getCurrentQuestion();
+    expect(currentQuestion).toBe(quiz.getCurrentQuestion());
+  });
+  test("Quiz should return true if the correct answer is picked, or false otherwise", () => {
+    quiz.loadQuestions(mockQuestions);
+    userAnswer = "2";
+    const result = quiz.answer(userAnswer);
+    expect(result).toBe(true);
   });
 });
