@@ -18,37 +18,21 @@ const mockQuestions = [
   },
 ];
 
-const quiz = new Quiz();
+describe("Test for nomal quiz initialization", () => {
+  const quiz = new Quiz();
 
-describe("Quiz Initialization", () => {
-  test("Quiz should initialize with a score of 0", () => {
-    const score = quiz.getScore();
-    expect(score).toBe(0);
+  test("The initia score of a quiz shoule be 0", () => {
+    const result = quiz.getScore();
+    expect(result).toBe(0);
   });
-  test("The index of the initial question should be 0", () => {
-    const currentIndex = quiz.getCurrentQuestionIndex();
-    expect(currentIndex).toBe(0);
-  });
-  test("The length of the initial question list, should be 0", () => {
-    const length = quiz.getQuestionsLength();
-    expect(length).toBe(0);
-  });
-});
 
-describe("Quiz Methods", () => {
-  test("Quiz should load the questions", () => {
-    quiz.loadQuestions(mockQuestions);
-    expect(mockQuestions).toBe(quiz.getQuestions());
+  test("The initial length of the quiz question array should be 0", () => {
+    const result = quiz.getQuestions();
+    expect(result.length).toBe(0);
   });
-  test("Quiz should return the current questions", () => {
-    quiz.loadQuestions(mockQuestions);
-    const currentQuestion = quiz.getCurrentQuestion();
-    expect(currentQuestion).toBe(quiz.getCurrentQuestion());
-  });
-  test("Quiz should return true if the correct answer is picked, or false otherwise", () => {
-    quiz.loadQuestions(mockQuestions);
-    userAnswer = "2";
-    const result = quiz.answer(userAnswer);
-    expect(result).toBe(true);
+
+  test("The initial index of the quiz should be 0", () => {
+    const result = quiz.getCurrentQuizIndex();
+    expect(result).toBe(0);
   });
 });
