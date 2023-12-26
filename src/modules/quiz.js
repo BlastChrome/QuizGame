@@ -1,3 +1,5 @@
+const { isArray } = require("lodash");
+
 class Quiz {
   constructor() {
     this.score = 0;
@@ -8,7 +10,7 @@ class Quiz {
   getScore() {
     return this.score;
   }
-  getQuestions() {
+  getAllQuestions() {
     return this.questions;
   }
   getCurrentQuizIndex() {
@@ -18,12 +20,40 @@ class Quiz {
     return this.questions[this.currentQuizIndex];
   }
 
-  loadQuestions(array) {
+  loadAllQuestions(array) {
     if (array.length > 0) {
-      this.questions = array;
+      if (this.validateAllQuestions(array)) {
+        this.questions = array;
+      }
     } else {
       throw new Error("Error: Questions cannot be empty!");
     }
+  }
+
+  validateAllQuestions(questionsToValidate) {
+    if (isArray(questionsToValidate)) {
+      questionsToValidate.forEach((question) => {
+        if (!this.validateQuestion(question)) return false;
+      });
+    }
+    return true;
+  }
+
+  validateQuestion(q) {
+    if (typeof q.question !== "string") {
+      return false;
+    }
+    if (
+      !Array.isArray(q.options) ||
+      q.options.some((opt) => typeof opt !== "string")
+    ) {
+      return false;
+    }
+    if (typeof q.answer !== "string" || !q.options.includes(q.answer)) {
+      return false;
+    }
+
+    return true;
   }
 
   //class methods
