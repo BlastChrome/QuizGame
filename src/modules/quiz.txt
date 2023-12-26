@@ -10,4 +10,4 @@ DONE    2.  retrieve the current question
 DONE    3.  retrieve the score 
     4.  know when it's at the end of the list 
     5.  know when a correct/incorrect answer is chosen
-DONE    6.  load questions from data
+    6.  load questions from data
