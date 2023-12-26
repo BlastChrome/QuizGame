@@ -18,10 +18,10 @@ const mockQuestions = [
   },
 ];
 
-describe("Test for nomal quiz initialization", () => {
+describe("Tests for nomal quiz initialization", () => {
   const quiz = new Quiz();
 
-  test("The initia score of a quiz shoule be 0", () => {
+  test("The initial score of a quiz shoule be 0", () => {
     const result = quiz.getScore();
     expect(result).toBe(0);
   });
@@ -34,5 +34,33 @@ describe("Test for nomal quiz initialization", () => {
   test("The initial index of the quiz should be 0", () => {
     const result = quiz.getCurrentQuizIndex();
     expect(result).toBe(0);
+  });
+});
+
+describe("Tests for how questions are loaded into the quiz object", () => {
+  test("should load questions into the question array", () => {
+    const quiz = new Quiz();
+    quiz.loadQuestions(mockQuestions);
+    const questions = quiz.getQuestions();
+    expect(questions).toEqual(mockQuestions);
+    expect(questions.length).toBe(mockQuestions.length);
+  });
+
+  test("the initial quiz index should point to the first question", () => {
+    const quiz = new Quiz();
+    quiz.loadQuestions(mockQuestions);
+    const currentQuestion = quiz.getCurrentQuestion();
+    expect(currentQuestion).toBe(mockQuestions[0]);
+    expect(quiz.getCurrentQuizIndex()).toBe(0);
+  });
+
+  test("Should throw an error if the loaded questions array is empty", () => {
+    const quiz = new Quiz();
+    const loadEmptyQuestions = () => {
+      quiz.loadQuestions([]);
+    };
+    expect(loadEmptyQuestions).toThrow(
+      Error("Error: Questions cannot be empty!")
+    );
   });
 });

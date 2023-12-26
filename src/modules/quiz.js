@@ -1,44 +1,36 @@
 class Quiz {
   constructor() {
     this.score = 0;
-    this.currentQuestionIndex = 0;
+    this.currentQuizIndex = 0;
     this.questions = [];
   }
-
-  //   Getters
+  //getter methods
   getScore() {
     return this.score;
   }
-  getCurrentQuestionIndex() {
-    return this.currentQuestionIndex;
-  }
-  getQuestionsLength() {
-    return this.questions.length;
-  }
-
   getQuestions() {
     return this.questions;
   }
-
-  //   Quiz manipulation methods
-  incrementCurrentQuestionIndex() {
-    this.currentQuestionIndex += 1;
+  getCurrentQuizIndex() {
+    return this.currentQuizIndex;
+  }
+  getCurrentQuestion() {
+    return this.questions[this.currentQuizIndex];
   }
 
-  loadQuestions(data) {
-    this.questions = data;
-  }
-
-  answer(userAnswer) {
-    if (userAnswer == this.questions[this.currentQuestionIndex].answer) {
-      return true;
+  loadQuestions(array) {
+    if (array.length > 0) {
+      this.questions = array;
     } else {
-      return false;
+      throw new Error("Error: Questions cannot be empty!");
     }
   }
 
-  getCurrentQuestion() {
-    return this.questions[this.getCurrentQuestionIndex()].question;
+  //class methods
+  incrementQuizIndex() {
+    if (this.currentQuizIndex < this.questions.length - 1) {
+      this.currentQuizIndex++;
+    }
   }
 }
 
