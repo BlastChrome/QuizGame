@@ -1,7 +1,7 @@
 class Quiz {
   constructor() {
     this.score = 0;
-    this.currentQuizIndex = 0;
+    this.currentQuizQuestionIndex = 0;
     this.questions = [];
   }
 
@@ -14,12 +14,12 @@ class Quiz {
     return this.questions;
   }
 
-  getCurrentQuizIndex() {
-    return this.currentQuizIndex;
+  getCurrentQuizQuestionIndex() {
+    return this.currentQuizQuestionIndex;
   }
 
   getCurrentQuestion() {
-    return this.questions[this.currentQuizIndex];
+    return this.questions[this.currentQuizQuestionIndex];
   }
 
   loadAllQuestions(array) {
@@ -59,13 +59,16 @@ class Quiz {
   }
 
   selectOption(option) {
-    const question = this.getCurrentQuestion();
-    if (option == question["answer"]) {
-      this.incremementScore();
-      return true;
-    } else {
-      return false;
+    const currentQuestion = this.getCurrentQuestion();
+    if (currentQuestion.options.includes(option)) {
+      if (option === currentQuestion.answer) {
+        this.incremementScore();
+        return true;
+      } else {
+        return false;
+      }
     }
+    return false;
   }
 
   //class methods
