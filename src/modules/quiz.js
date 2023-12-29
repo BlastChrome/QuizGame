@@ -1,6 +1,7 @@
 class Quiz {
   constructor() {
     this.score = 0;
+    this.currentQuiz = {};
     this.currentQuizQuestionIndex = 0;
     this.questions = [];
   }
@@ -12,6 +13,10 @@ class Quiz {
 
   getAllQuestions() {
     return this.questions;
+  }
+
+  getCurrentQuiz() {
+    return this.currentQuiz;
   }
 
   getCurrentQuizQuestionIndex() {
@@ -31,6 +36,17 @@ class Quiz {
     } else {
       throw new Error("Error: Invalid question structure detected!");
     }
+  }
+
+  loadQuiz(quiz) {
+    this.currentQuiz = quiz;
+  }
+
+  validateQuiz(quiz) {
+    if (typeof quiz.title !== "string") return false;
+    if (typeof quiz.icon !== "string") return false;
+    if (!Array.isArray(quiz.questions)) return false;
+    return true;
   }
 
   validateAllQuestions(questionsToValidate) {
@@ -72,9 +88,9 @@ class Quiz {
   }
 
   //class methods
-  incrementQuizIndex() {
-    if (this.currentQuizIndex < this.questions.length - 1) {
-      this.currentQuizIndex++;
+  incrementQuizQuestionIndex() {
+    if (this.currentQuizQuestionIndex < this.questions.length - 1) {
+      this.currentQuizQuestionIndex++;
     }
   }
   incremementScore() {
