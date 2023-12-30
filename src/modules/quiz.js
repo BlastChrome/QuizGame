@@ -1,14 +1,19 @@
 class Quiz {
   constructor() {
     this.score = 0;
-    this.currentQuiz = {};
     this.currentQuizQuestionIndex = 0;
+    this.currentQuiz = {};
     this.questions = [];
+    this.isComplete = false;
   }
 
   //getter methods
   getScore() {
     return this.score;
+  }
+
+  getIsComplete() {
+    return this.isComplete;
   }
 
   getAllQuestions() {
@@ -91,6 +96,9 @@ class Quiz {
   incrementQuizQuestionIndex() {
     if (this.currentQuizQuestionIndex < this.questions.length - 1) {
       this.currentQuizQuestionIndex++;
+    } else {
+      //set isComplete to true
+      this.isComplete = true;
     }
   }
   incremementScore() {
