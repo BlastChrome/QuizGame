@@ -1,7 +1,7 @@
 class Quiz {
   constructor() {
     this.score = 0;
-    this.currentQuizQuestionIndex = 0;
+    this.questionIndex = 0;
     this.currentQuiz = {};
     this.questions = [];
     this.isComplete = false;
@@ -24,12 +24,12 @@ class Quiz {
     return this.currentQuiz;
   }
 
-  getCurrentQuizQuestionIndex() {
-    return this.currentQuizQuestionIndex;
+  getQuestionIndex() {
+    return this.questionIndex;
   }
 
   getCurrentQuestion() {
-    return this.questions[this.currentQuizQuestionIndex];
+    return this.questions[this.questionIndex];
   }
 
   loadAllQuestions(array) {
@@ -38,20 +38,31 @@ class Quiz {
     }
     if (this.validateAllQuestions(array)) {
       this.questions = array;
+      this.resetCounts();
     } else {
       throw new Error("Error: Invalid question structure detected!");
     }
   }
 
   loadQuiz(quiz) {
-    this.currentQuiz = quiz;
+    if (this.validateQuiz(quiz)) this.currentQuiz = quiz;
+    else {
+      throw new Error("Invalid Quiz structure detected!");
+    }
   }
 
   validateQuiz(quiz) {
-    if (typeof quiz.title !== "string") return false;
-    if (typeof quiz.icon !== "string") return false;
     if (!Array.isArray(quiz.questions)) return false;
+    if (typeof quiz.title !== "string") return false;
+    if (!this.validateIcon(quiz.icon)) return false;
     return true;
+  }
+
+  validateIcon(iconPath) {
+    if (typeof iconPath !== "string") return false;
+    const validExtensions = ["svg", "jpg", "jpeg", "png"];
+    const hasValid = validExtensions.some((ext) => iconPath.endsWith(ext));
+    return hasValid;
   }
 
   validateAllQuestions(questionsToValidate) {
@@ -79,11 +90,13 @@ class Quiz {
     return true;
   }
 
+  //class methods
   selectOption(option) {
     const currentQuestion = this.getCurrentQuestion();
     if (currentQuestion.options.includes(option)) {
       if (option === currentQuestion.answer) {
         this.incremementScore();
+        this.incrementQuizQuestionIndex();
         return true;
       } else {
         return false;
@@ -92,10 +105,9 @@ class Quiz {
     return false;
   }
 
-  //class methods
   incrementQuizQuestionIndex() {
-    if (this.currentQuizQuestionIndex < this.questions.length - 1) {
-      this.currentQuizQuestionIndex++;
+    if (this.questionIndex < this.questions.length - 1) {
+      this.questionIndex++;
     } else {
       //set isComplete to true
       this.isComplete = true;
@@ -103,6 +115,11 @@ class Quiz {
   }
   incremementScore() {
     this.score++;
+  }
+
+  resetCounts() {
+    this.questionIndex = 0;
+    this.score = 0;
   }
 }
 
