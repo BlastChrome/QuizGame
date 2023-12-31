@@ -5,6 +5,7 @@ class Quiz {
     this.currentQuiz = {};
     this.questions = [];
     this.isComplete = false;
+    this.isInProgress = false;
   }
 
   //getter methods
@@ -28,17 +29,27 @@ class Quiz {
     return this.questionIndex;
   }
 
+  getIsInProgress() {
+    return this.isInProgress;
+  }
+
   getCurrentQuestion() {
     return this.questions[this.questionIndex];
   }
 
   loadAllQuestions(array) {
+    if (this.getIsInProgress()) {
+      throw new Error(
+        "Error: Cannot load questions while quiz is in progress!"
+      );
+    }
     if (!Array.isArray(array) || array.length === 0) {
       throw new Error("Error: Questions array cannot be empty or invalid!");
     }
     if (this.validateAllQuestions(array)) {
       this.questions = array;
       this.resetCounts();
+      this.isInProgress = true;
     } else {
       throw new Error("Error: Invalid question structure detected!");
     }
@@ -111,6 +122,7 @@ class Quiz {
     } else {
       //set isComplete to true
       this.isComplete = true;
+      this.isInProgress = false;
     }
   }
   incremementScore() {
