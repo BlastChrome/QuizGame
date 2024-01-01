@@ -13,6 +13,11 @@ class Logger {
       throw new Error("Error: message be atleast 1 character long!");
     return formatted;
   }
+
+  printMessage(message) {
+    const formatted = this.logMessage(message);
+    console.log(formatted);
+  }
 }
 
 module.exports = Logger;
