@@ -1,5 +1,4 @@
 // Import necessary modules
-const { experiments } = require("webpack");
 const Quiz = require("../quiz");
 
 // Mock data for quizzes and questions
