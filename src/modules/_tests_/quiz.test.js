@@ -66,8 +66,12 @@ describe("Quiz Class Initialization", () => {
   test("Initial quiz object should be empty", () => {
     expect(quiz.getCurrentQuiz()).toEqual({});
   });
+
   test("Initial isComplete property should return false", () => {
     expect(quiz.getIsComplete()).toBe(false);
+  });
+  test("inProgress should return false initially", () => {
+    expect(quiz.getIsInProgress()).toBe(false);
   });
 });
 
@@ -111,7 +115,7 @@ describe("Loading and Validating Quiz arrays", () => {
       expect(() => quiz.loadQuiz(badIcon)).toThrow();
     });
 
-    test("Should throw an error if the icon doesnt end with jpg,svg,jpeg or ,png", () => {
+    test("Should throw an error if the icon doesnt end with jpg, svg, jpeg or ,png", () => {
       const badIcon = createMalformedQuiz({
         icon: "./assets/images/icon-test.mp4",
       });
@@ -133,6 +137,11 @@ describe("Question Handling", () => {
       expect(quiz.getAllQuestions()).toEqual(mockQuestions);
     });
 
+    test("inProgress should return true, after questions are loaded", () => {
+      quiz.loadAllQuestions(mockQuestions);
+      expect(quiz.getIsInProgress()).toBe(true);
+    });
+
     test("Should point to the first question initially", () => {
       quiz.loadAllQuestions(mockQuestions);
       expect(quiz.getCurrentQuestion()).toBe(mockQuestions[0]);
@@ -145,24 +154,18 @@ describe("Question Handling", () => {
     test("Missing question array should throw an error", () => {
       expect(() => quiz.loadAllQuestions(null)).toThrow();
     });
-    test("When a new set of questions are laoded, the index should restart at 0", () => {
-      // load in a set of questions
+
+    test("Should not be able to load questions after a quiz is in progress", () => {
       quiz.loadAllQuestions(mockQuestions);
 
       // answer a few questions
       quiz.selectOption(mockQuestions[0].answer);
       quiz.selectOption(mockQuestions[1].answer);
 
-      // get the current question index, should be 2
-      const oldIndex = quiz.getQuestionIndex();
-
-      //load in a new quiz
-      quiz.loadAllQuestions(mockQuestions);
-
-      //get the new index
-      const newIndex = quiz.getQuestionIndex();
-      expect(oldIndex).toBe(2);
-      expect(newIndex).toBe(0);
+      // should throw an error if another set of questions are loaded at this point
+      expect(() => quiz.loadAllQuestions(mockQuestions)).toThrow(
+        "Error: Cannot load questions while quiz is in progress!"
+      );
     });
   });
 
@@ -217,8 +220,9 @@ describe("User Interaction with Quiz", () => {
     expect(quiz.selectOption("2")).toBe(true);
   });
 
-  // Tests for incorrect and invalid options
-  // Further testing: Add tests for the user's journey through the quiz
+  test("Incorect answer should return false", () => {
+    expect(quiz.selectOption("3")).toBe(false);
+  });
 
   describe("Scoring Mechanism", () => {
     test("Score increments with correct answer", () => {
@@ -232,17 +236,33 @@ describe("User Interaction with Quiz", () => {
       expect(quiz.getScore()).toBe(oldScore);
     });
 
+    test("A perfect score should be equal to the length of the quiz", () => {
+      //loop throw the quiz selecting the correct answer each time
+      mockQuestions.forEach((question) => quiz.selectOption(question.answer));
+      const quizLength = mockQuestions.length;
+      const finalScore = quiz.getScore();
+      expect(finalScore).toBe(quizLength);
+    });
+
     // Further testing: Add tests for other user interactions, if any
   });
+
   describe("Tests for the reaching the end of the quiz", () => {
     test("isComplete should be true, when the end of the quiz is reached", () => {
-      quiz.loadAllQuestions(mockQuestions);
       // increment to the end of the quiz
       for (let i = 0; i < mockQuestions.length; i++) {
         quiz.incrementQuizQuestionIndex();
       }
       const isQuizFinished = quiz.getIsComplete();
       expect(isQuizFinished).toBe(true);
+    });
+
+    test("In progress should be false, when the end of the quiz is reached", () => {
+      for (let i = 0; i < mockQuestions.length; i++) {
+        quiz.incrementQuizQuestionIndex();
+      }
+      const isQuizInProgress = quiz.getIsInProgress();
+      expect(isQuizInProgress).toBe(false);
     });
   });
 });

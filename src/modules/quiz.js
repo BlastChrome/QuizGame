@@ -48,7 +48,8 @@ class Quiz {
     }
     if (this.validateAllQuestions(array)) {
       this.questions = array;
-      this.resetCounts();
+      this.questionIndex = 0;
+      this.score = 0;
       this.isInProgress = true;
     } else {
       throw new Error("Error: Invalid question structure detected!");
@@ -120,18 +121,13 @@ class Quiz {
     if (this.questionIndex < this.questions.length - 1) {
       this.questionIndex++;
     } else {
-      //set isComplete to true
+      // quiz complete
       this.isComplete = true;
       this.isInProgress = false;
     }
   }
   incremementScore() {
     this.score++;
-  }
-
-  resetCounts() {
-    this.questionIndex = 0;
-    this.score = 0;
   }
 }
 
