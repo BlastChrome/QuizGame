@@ -1,12 +1,17 @@
 class Logger {
   constructor() {}
 
+  formatMessage(message) {
+    return typeof message == "number" ? message.toString() : message;
+  }
+
   logMessage(message) {
-    if (typeof message !== "string")
+    const formatted = this.formatMessage(message);
+    if (typeof formatted !== "string")
       throw new Error("Error: message must be a string!");
-    else if (message.length <= 0)
+    else if (formatted.length <= 0)
       throw new Error("Error: message be atleast 1 character long!");
-    return message;
+    return formatted;
   }
 }
 
