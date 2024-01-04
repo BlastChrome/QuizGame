@@ -1,11 +1,13 @@
+const Logger = require("./logger");
 class Quiz {
-  constructor() {
+  constructor(logger) {
     this.score = 0;
     this.questionIndex = 0;
     this.currentQuiz = {};
     this.questions = [];
     this.isComplete = false;
     this.isInProgress = false;
+    this.logger = logger || new Logger();
   }
 
   //getter methods
@@ -33,21 +35,21 @@ class Quiz {
     return this.isInProgress;
   }
 
-  getCurrentQuestion() {
+  getCurrentQuestionObject() {
     return this.questions[this.questionIndex];
   }
 
-  loadAllQuestions(array) {
+  loadAllQuestions(questions) {
     if (this.getIsInProgress()) {
       throw new Error(
         "Error: Cannot load questions while quiz is in progress!"
       );
     }
-    if (!Array.isArray(array) || array.length === 0) {
+    if (!Array.isArray(questions) || questions.length == 0) {
       throw new Error("Error: Questions array cannot be empty or invalid!");
     }
-    if (this.validateAllQuestions(array)) {
-      this.questions = array;
+    if (this.validateAllQuestions(questions)) {
+      this.questions = questions;
       this.questionIndex = 0;
       this.score = 0;
       this.isInProgress = true;
@@ -57,8 +59,16 @@ class Quiz {
   }
 
   loadQuiz(quiz) {
-    if (this.validateQuiz(quiz)) this.currentQuiz = quiz;
-    else {
+    if (this.validateQuiz(quiz)) {
+      this.loadAllQuestions(quiz.questions);
+
+      this.currentQuiz = quiz;
+
+      this.logger.printMessage(
+        `Quiz successfully loaded: ${this.getCurrentQuiz().title} quiz\n`
+      );
+      this.printCurrentQuestion();
+    } else {
       throw new Error("Invalid Quiz structure detected!");
     }
   }
@@ -104,7 +114,7 @@ class Quiz {
 
   //class methods
   selectOption(option) {
-    const currentQuestion = this.getCurrentQuestion();
+    const currentQuestion = this.getCurrentQuestionObject();
     if (currentQuestion.options.includes(option)) {
       if (option === currentQuestion.answer) {
         this.incremementScore();
@@ -115,6 +125,21 @@ class Quiz {
       }
     }
     return false;
+  }
+
+  printCurrentQuestion() {
+    const index = this.getQuestionIndex();
+    const question = this.getCurrentQuestionObject().question;
+    const options = this.getCurrentQuestionObject().options;
+    const selections = ["A", "B", "C", "D"];
+
+    //log out the current question
+    this.logger.printMessage(`Question #${index + 1}: ${question}\n`);
+
+    //log out each option
+    options.forEach((option, i) =>
+      this.logger.printMessage(`${selections[i]}: ${option}\n`)
+    );
   }
 
   incrementQuizQuestionIndex() {
