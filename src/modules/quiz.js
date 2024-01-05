@@ -67,7 +67,8 @@ class Quiz {
       this.logger.printMessage(
         `Quiz successfully loaded: ${this.getCurrentQuiz().title} quiz\n`
       );
-      this.printCurrentQuestion();
+      //loads displays the first question
+      this.promptUser();
     } else {
       throw new Error("Invalid Quiz structure detected!");
     }
@@ -117,13 +118,19 @@ class Quiz {
     const currentQuestion = this.getCurrentQuestionObject();
     if (currentQuestion.options.includes(option)) {
       if (option === currentQuestion.answer) {
+        this.logger.printMessage(
+          `\nCorrect! The answer is ${this.getCurrentQuestionObject().answer}\n`
+        );
         this.incremementScore();
         this.incrementQuizQuestionIndex();
         return true;
       } else {
+        this.logger.printMessage(`\nWoops, That's not right :(\n`);
+        this.incrementQuizQuestionIndex();
         return false;
       }
     }
+    this.logger.printMessage(`\nInvalid Selection!\n`);
     return false;
   }
 
@@ -132,14 +139,21 @@ class Quiz {
     const question = this.getCurrentQuestionObject().question;
     const options = this.getCurrentQuestionObject().options;
     const selections = ["A", "B", "C", "D"];
-
     //log out the current question
     this.logger.printMessage(`Question #${index + 1}: ${question}\n`);
-
     //log out each option
     options.forEach((option, i) =>
       this.logger.printMessage(`${selections[i]}: ${option}\n`)
     );
+  }
+
+  printResults() {
+    const score = this.getScore();
+    this.logger.printMessage(`\nRESULTS: ${score}`);
+  }
+
+  promptUser() {
+    this.isComplete == true ? this.printResults() : this.printCurrentQuestion();
   }
 
   incrementQuizQuestionIndex() {
@@ -151,6 +165,7 @@ class Quiz {
       this.isInProgress = false;
     }
   }
+
   incremementScore() {
     this.score++;
   }
