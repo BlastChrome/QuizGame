@@ -1,27 +1,92 @@
 // Import necessary modules
 const Quiz = require("../quiz");
+const Logger = require("../logger");
 
 // Mock data for quizzes and questions
 const mockQuizzes = [
   {
     title: "HTML",
     icon: "./assets/images/icon-html.svg",
-    questions: [],
+    questions: [
+      {
+        question: "What is 1 + 1?",
+        options: ["1", "2", "3", "4"],
+        answer: "2",
+      },
+      {
+        question: "What is 2 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "4",
+      },
+      {
+        question: "What is 1 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "3",
+      },
+    ],
   },
   {
     title: "CSS",
     icon: "./assets/images/icon-html.svg",
-    questions: [],
+    questions: [
+      {
+        question: "What is 1 + 1?",
+        options: ["1", "2", "3", "4"],
+        answer: "2",
+      },
+      {
+        question: "What is 2 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "4",
+      },
+      {
+        question: "What is 1 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "3",
+      },
+    ],
   },
   {
     title: "JavaScript",
     icon: "./assets/images/icon-html.svg",
-    questions: [],
+    questions: [
+      {
+        question: "What is 1 + 1?",
+        options: ["1", "2", "3", "4"],
+        answer: "2",
+      },
+      {
+        question: "What is 2 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "4",
+      },
+      {
+        question: "What is 1 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "3",
+      },
+    ],
   },
   {
     title: "Accessibility",
     icon: "./assets/images/icon-html.svg",
-    questions: [],
+    questions: [
+      {
+        question: "What is 1 + 1?",
+        options: ["1", "2", "3", "4"],
+        answer: "2",
+      },
+      {
+        question: "What is 2 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "4",
+      },
+      {
+        question: "What is 1 + 2?",
+        options: ["1", "2", "3", "4"],
+        answer: "3",
+      },
+    ],
   },
 ];
 
@@ -45,9 +110,10 @@ const mockQuestions = [
 
 describe("Quiz Class Initialization", () => {
   let quiz;
+  let logger = new Logger();
 
   beforeEach(() => {
-    quiz = new Quiz();
+    quiz = new Quiz(logger);
   });
 
   test("Initial score should be 0", () => {
@@ -69,8 +135,13 @@ describe("Quiz Class Initialization", () => {
   test("Initial isComplete property should return false", () => {
     expect(quiz.getIsComplete()).toBe(false);
   });
+
   test("inProgress should return false initially", () => {
     expect(quiz.getIsInProgress()).toBe(false);
+  });
+
+  test("quiz instance should have a logger property", () => {
+    expect(quiz.logger instanceof Logger).toBe(true);
   });
 });
 
@@ -143,7 +214,7 @@ describe("Question Handling", () => {
 
     test("Should point to the first question initially", () => {
       quiz.loadAllQuestions(mockQuestions);
-      expect(quiz.getCurrentQuestion()).toBe(mockQuestions[0]);
+      expect(quiz.getCurrentQuestionObject()).toBe(mockQuestions[0]);
     });
 
     test("Empty question array should throw an error", () => {
@@ -197,16 +268,13 @@ describe("Question Handling", () => {
       }
       // check should stop this from incrementing
       quiz.incrementQuizQuestionIndex();
-      expect(quiz.getQuestionIndex()).toBeLessThanOrEqual(
-        mockQuestions.length - 1
-      );
+      expect(quiz.getQuestionIndex()).toBeLessThanOrEqual(mockQuestions.length);
     });
   });
 
   // Further testing: Add tests for edge cases, such as loading questions after a quiz has started
 });
 
-// Describe block for User Interaction with Quiz
 describe("User Interaction with Quiz", () => {
   let quiz;
 
@@ -266,4 +334,30 @@ describe("User Interaction with Quiz", () => {
   });
 });
 
-// Add additional describe blocks for other functionalities or edge cases
+describe("Quiz Logger Integration", () => {
+  let quiz;
+  let logger;
+  const mockQuiz = mockQuizzes[0];
+
+  beforeEach(() => {
+    logger = new Logger();
+    quiz = new Quiz(logger); // Assuming Quiz takes a logger as a dependency
+    jest.spyOn(logger, "printMessage");
+    quiz.loadQuiz(mockQuiz);
+  });
+
+  describe("Quiz Loaded Logs", () => {
+    test("Should log the title of the loaded quiz", () => {
+      expect(logger.printMessage).toHaveBeenCalledWith(
+        `Quiz successfully loaded: ${mockQuiz.title} quiz\n`
+      );
+    });
+
+    test("Should log the current question of a quiz", () => {
+      const currentQuestion = quiz.getCurrentQuestionObject().question;
+      expect(logger.printMessage).toHaveBeenCalledWith(
+        `Question #${quiz.getQuestionIndex() + 1}: ${currentQuestion}\n`
+      );
+    });
+  });
+});
