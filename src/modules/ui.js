@@ -1,19 +1,18 @@
 class UI {
   constructor() {
-    this.clickCount = 0; // Add a click counter
-    this.selectionButtons = document.getElementById("choice");
+    this.body = document.querySelector("body");
+    this.darkThemeBtn = document.getElementById("dark-theme-switch");
+    this.lightThemeBtn = document.getElementById("light-theme-switch");
     this.themeController = document.getElementById("theme-controller");
+    this.selectionButtons = document.getElementById("choice");
+    this.themeToggleCheckbox = document.getElementById("theme-toggle-checkbox");
 
-    if (this.selectionButtons) {
-      this.selectionButtons.addEventListener(
-        "click",
-        this.handleSelectionClick
-      );
-    }
-
-    if (this.themeController) {
-      this.themeController.addEventListener("click", this.handleThemeClick);
-    }
+    // Event Listeners
+    this.selectionButtons.addEventListener("click", this.handleSelectionClick);
+    this.themeController.addEventListener(
+      "click",
+      this.handlThemeControllerClick
+    );
   }
 
   handleSelectionClick = (e) => {
@@ -23,14 +22,27 @@ class UI {
     );
   };
 
-  handleThemeClick = (e) => {
-    const clickable = e.target.closest("button") || e.target.closest("input");
-    console.log(clickable);
+  handlThemeControllerClick = (e) => {
+    const clickedElement =
+      e.target.closest("button") || e.target.closest("label");
+
+    if (clickedElement == this.lightThemeBtn) {
+      this.changeTheme("remove", false);
+    } else if (clickedElement == this.darkThemeBtn) {
+      this.changeTheme("add", true);
+    } else if (clickedElement.id == "theme-toggle") {
+      if (this.themeToggleCheckbox.checked) {
+        this.changeTheme("add", true);
+      } else {
+        this.changeTheme("remove", false);
+      }
+    }
   };
 
-  testLogger() {
-    console.log(this.selectionButtons);
-    console.log(this.themeController);
+  changeTheme(action, switchValue) {
+    if (!(action == "add" || action == "remove")) return null;
+    this.body.classList[action]("dark-theme");
+    this.themeToggleCheckbox.checked = switchValue;
   }
 }
 

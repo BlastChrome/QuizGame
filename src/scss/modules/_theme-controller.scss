@@ -51,12 +51,15 @@ body {
         right: 0;
         bottom: 0;
         background-color: $purple;
-        -webkit-transition: transform 0.4s;
         transition: transform 0.4s;
         border-radius: 999px;
         width: 32px;
         height: 20px;
         margin: 0 auto;
+
+        &.on:before {
+            transform: translate(100%);
+        }
 
         &:before {
             position: absolute;
