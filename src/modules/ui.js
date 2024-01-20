@@ -43,6 +43,7 @@ class UI {
     if (!(action == "add" || action == "remove")) return null;
     this.body.classList[action]("dark-theme");
     this.themeToggleCheckbox.checked = switchValue;
+    console.log("commit test");
   }
 }
 
