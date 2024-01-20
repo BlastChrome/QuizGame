@@ -5,6 +5,7 @@ class UI {
     this.lightThemeBtn = document.getElementById("light-theme-switch");
     this.themeController = document.getElementById("theme-controller");
     this.selectionButtons = document.getElementById("choice");
+    this.themetoggleBtn = document.getElementById("theme-toggle");
     this.themeToggleCheckbox = document.getElementById("theme-toggle-checkbox");
 
     // Event Listeners
@@ -23,27 +24,27 @@ class UI {
   };
 
   handlThemeControllerClick = (e) => {
-    const clickedElement =
-      e.target.closest("button") || e.target.closest("label");
+    // e.stopPropagation();
+
+    const clickedElement = e.target.closest("button");
 
     if (clickedElement == this.lightThemeBtn) {
-      this.changeTheme("remove", false);
+      this.updateTheme("remove", false);
     } else if (clickedElement == this.darkThemeBtn) {
-      this.changeTheme("add", true);
-    } else if (clickedElement.id == "theme-toggle") {
-      if (this.themeToggleCheckbox.checked) {
-        this.changeTheme("add", true);
+      this.updateTheme("add", true);
+    } else if (clickedElement == this.themetoggleBtn) {
+      if (this.themeToggleCheckbox.checked == true) {
+        this.updateTheme("remove", false);
       } else {
-        this.changeTheme("remove", false);
+        this.updateTheme("add", true);
       }
     }
   };
 
-  changeTheme(action, switchValue) {
+  updateTheme(action, switchValue) {
     if (!(action == "add" || action == "remove")) return null;
     this.body.classList[action]("dark-theme");
     this.themeToggleCheckbox.checked = switchValue;
-    console.log("commit test");
   }
 }
 

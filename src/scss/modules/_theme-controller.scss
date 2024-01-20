@@ -57,9 +57,6 @@ body {
         height: 20px;
         margin: 0 auto;
 
-        &.on:before {
-            transform: translate(100%);
-        }
 
         &:before {
             position: absolute;
