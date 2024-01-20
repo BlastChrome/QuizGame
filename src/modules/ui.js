@@ -24,15 +24,13 @@ class UI {
   };
 
   handlThemeControllerClick = (e) => {
-    // e.stopPropagation();
+    const button = e.target.closest("button");
 
-    const clickedElement = e.target.closest("button");
-
-    if (clickedElement == this.lightThemeBtn) {
+    if (button == this.lightThemeBtn) {
       this.updateTheme("remove", false);
-    } else if (clickedElement == this.darkThemeBtn) {
+    } else if (button == this.darkThemeBtn) {
       this.updateTheme("add", true);
-    } else if (clickedElement == this.themetoggleBtn) {
+    } else if (button == this.themetoggleBtn) {
       if (this.themeToggleCheckbox.checked == true) {
         this.updateTheme("remove", false);
       } else {
