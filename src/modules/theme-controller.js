@@ -1,4 +1,4 @@
-class UI {
+class ThemeController {
   constructor() {
     this.body = document.querySelector("body");
     this.darkThemeBtn = document.getElementById("dark-theme-switch");
@@ -45,4 +45,4 @@ class UI {
   }
 }
 
-module.exports = UI;
+module.exports = ThemeController;
