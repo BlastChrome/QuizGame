@@ -4,24 +4,23 @@ class UI {
     this.darkThemeBtn = document.getElementById("dark-theme-switch");
     this.lightThemeBtn = document.getElementById("light-theme-switch");
     this.themeController = document.getElementById("theme-controller");
-    this.selectionButtons = document.getElementById("choice");
     this.themetoggleBtn = document.getElementById("theme-toggle");
     this.themeToggleCheckbox = document.getElementById("theme-toggle-checkbox");
-
-    // Event Listeners
-    this.selectionButtons.addEventListener("click", this.handleSelectionClick);
     this.themeController.addEventListener(
       "click",
       this.handlThemeControllerClick
     );
+
+    // this.selectionButtons = document.getElementById("choice");
+    // this.selectionButtons.addEventListener("click", this.handleSelectionClick);
   }
 
-  handleSelectionClick = (e) => {
-    const button = e.target.closest("button");
-    console.log(
-      Array.prototype.indexOf.call(this.selectionButtons.children, button)
-    );
-  };
+  // handleSelectionClick = (e) => {
+  //   const button = e.target.closest("button");
+  //   console.log(
+  //     Array.prototype.indexOf.call(this.selectionButtons.children, button)
+  //   );
+  // };
 
   handlThemeControllerClick = (e) => {
     const button = e.target.closest("button");

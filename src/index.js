@@ -1,7 +1,7 @@
 import "./scss/main.scss";
 const Logger = require("./modules/logger");
 const Quiz = require("./modules/quiz");
-const UI = require("./modules/ui");
+const ThemeController = require("./modules/theme-controller");
 const data = require("./test.json");
 
 //create terminal interface
@@ -14,7 +14,7 @@ const logger = new Logger();
 
 const quiz = new Quiz(logger);
 
-const ui = new UI();
+const themeController = new ThemeController();
 
 // quiz.loadQuiz(data.quizzes[0]);
 
