@@ -3,7 +3,7 @@ const Logger = require("./modules/logger");
 const Quiz = require("./modules/quiz");
 const ThemeController = require("./modules/theme-controller");
 const UI = require("./modules/ui");
-const data = require("./test.json");
+const data = require("./data.json");
 
 //create terminal interface
 // const rl = readline.createInterface({
@@ -11,13 +11,24 @@ const data = require("./test.json");
 // });
 //   output: process.stdout,
 
-const logger = new Logger();
+const main = (() => {
+  // initial setup
+  const logger = new Logger();
+  const quiz = new Quiz(logger);
+  const themeController = new ThemeController();
+  const ui = new UI();
 
-const quiz = new Quiz(logger);
+  ui.renderStartScreenElements();
 
-const themeController = new ThemeController();
+  const selectQuiz = (index) => {
+    if (index !== -1) {
+      quiz.loadQuiz(data.quizzes[index]);
+    }
+  };
 
-const ui = new UI();
+  // load the quiz based on the button input
+  ui.onQuizSelection(selectQuiz);
+})();
 
 // quiz.loadQuiz(data.quizzes[0]);
 

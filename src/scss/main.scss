@@ -12,3 +12,11 @@
 @import './modules/submit';
 @import './modules/error';
 @import './modules/results';
+
+.hide {
+    display: none !important;
+}
+
+.active {
+    display: block !important;
+}
