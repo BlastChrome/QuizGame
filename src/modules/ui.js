@@ -9,30 +9,61 @@ class UI {
       document.getElementsByClassName("in-progress")
     );
     this.lastClickedButtonIndex = null;
-  }
+    this.questionText = document.getElementById("question");
+    this.progressNumber = document.getElementById("progress-number");
 
-  getLastClickedButtonIndex = () => {
-    return this.lastClickedButtonIndex;
+    this.quizSelectionHandler = (e) => this.handleQuizSelection(e);
+  }
+  setQuizInProgress = (isInProgress) => {
+    this.isQuizStarted = isInProgress;
+  };
+
+  handleQuizSelection = (e) => {
+    const button = e.target.closest("button");
+    const clickedButtonIndex = Array.prototype.indexOf.call(
+      this.selectionButtons.children,
+      button
+    );
+    // stops the user from selecting another quiz while it's in progress
+    if (this.isQuizStarted) return null;
+    // passes the index of the button to a callback
+    this.onQuizSelectionCallback(clickedButtonIndex);
   };
 
   onQuizSelection = (callback) => {
-    this.selectionButtons.addEventListener("click", (e) => {
-      const button = e.target.closest("button");
-      const clickedButtonIndex = Array.prototype.indexOf.call(
-        this.selectionButtons.children,
-        button
-      );
-      if (this.isQuizStarted) return null;
-      callback(clickedButtonIndex);
-      this.isQuizStarted = true;
+    this.onQuizSelectionCallback = callback;
+    this.selectionButtons.addEventListener("click", this.handleQuizSelection);
+  };
+
+  resetEventListeners = () => {
+    // Remove the existing quiz selection listener
+    this.selectionButtons.removeEventListener(
+      "click",
+      this.quizSelectionHandler
+    );
+    // You can add new listeners here as needed,
+    // or set up a separate method to add them based on the application state
+  };
+
+  renderQuestion = (questionObject) => {
+    this.hideStartScreenElements();
+    this.renderInProgressElements();
+    this.questionText.innerText = questionObject.question;
+
+    // filter the [A-D] buttons
+    const optionButtons = Array.from(this.selectionButtons.children).filter(
+      (button) => button.dataset.optionGroup == "quiz-options"
+    );
+
+    // Update the text inside the buttons to question
+    optionButtons.forEach((button, index) => {
+      const optionsText = button.querySelector("h3");
+      optionsText.innerHTML = questionObject.options[index];
     });
   };
 
-  renderQuestion = (question) => {
-    this.hideStartScreenElements();
-    this.renderInProgressElements();
-    this.updateCurrentQuestionText();
-    console.log(question);
+  renderProgressNumber = (index) => {
+    this.progressNumber.innerHTML = index + 1;
   };
 
   renderStartScreenElements = () => {
@@ -41,19 +72,17 @@ class UI {
     );
   };
 
-  hideStartScreenElements = () => {
-    this.startScreenElements.forEach((element) => {
-      this.modifyElement(element, "add", "hide");
-    });
-  };
-
   renderInProgressElements = () => {
     this.inProgressElements.forEach((element) => {
       this.modifyElement(element, "remove", "hide");
     });
   };
 
-  updateCurrentQuestionText = () => {};
+  hideStartScreenElements = () => {
+    this.startScreenElements.forEach((element) => {
+      this.modifyElement(element, "add", "hide");
+    });
+  };
 
   modifyElement = (element, action, classToEdit) => {
     element.classList[action](classToEdit);

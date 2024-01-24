@@ -46,10 +46,10 @@
                 <p class="content__text text-body-italic start-screen start-screen-text hide">Pick a subject to get started.</p> 
 
                 <!-- Question #1 Text -->
-                <h3 class="content__progress-text text-body-italic hide in-progress">Question 6 of 10</h3>
-                <h4 class="content__subtitle text-heading-m hide in-progress">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?</h4>
+                <h3 id="in-progress-text" class="content__progress-text text-body-italic hide in-progress">Question <span id="progress-number">6</span> of 10</h3>
+                <h4 id="question" class="content__subtitle text-heading-m hide in-progress">Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?</h4>
                 <div class="progress-bar hide in-progress">
-                    <div class="progress-bar__fill progress-bar__fill--90"></div>
+                    <div class="progress-bar__fill progress-bar__fill--0"></div>
                 </div> 
 
                 <!-- Quiz Results --> 
@@ -99,28 +99,28 @@
                     
 
                     <!-- Question selection Default -->
-                    <button class="choice__selector in-progress hide" aria-label="Option A">
+                    <button class="choice__selector in-progress hide" data-option-group="quiz-options" aria-label="Option A" data-select="A">
                         <div class="choice__icon choice__icon--selection" aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">A</p>
                         </div>
                         <h3 class="choice__title text-heading-s">4.5 : 1</h3>
                     </button> 
 
-                    <button class="choice__selector in-progress hide" aria-label="Option B">
+                    <button class="choice__selector in-progress hide" data-option-group="quiz-options" aria-label="Option B" data-select="B">
                         <div class="choice__icon choice__icon--selection" aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">B</p>
                         </div>
                         <h3 class="choice__title text-heading-s">3 : 1</h3> 
                     </button>   
 
-                    <button class="choice__selector in-progress hide" aria-label="Option C">
+                    <button class="choice__selector in-progress hide" data-option-group="quiz-options" aria-label="Option C" data-select="C">
                         <div class="choice__icon choice__icon--selection" aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">C</p>
                         </div>
                         <h3 class="choice__title text-heading-s">2.5 : 1</h3>
                     </button>   
 
-                    <button class="choice__selector in-progress hide" aria-label="Option D">
+                    <button class="choice__selector in-progress hide" data-option-group="quiz-options" aria-label="Option D" data-select="D">
                         <div class="choice__icon choice__icon--selection"  aria-hidden="true">
                             <p class="text-heading-s choice__icon__text">D</p>
                         </div>

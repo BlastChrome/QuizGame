@@ -169,6 +169,21 @@ class Quiz {
   incremementScore() {
     this.score++;
   }
+
+  //UI Intergration Methods
+  provideCurrentQuestionToUI = (callback) => {
+    const currentQuestion = this.getCurrentQuestionObject();
+    callback(currentQuestion);
+  };
+
+  provideCurrentQuestionIndexToUI = (callback) => {
+    const currentIndex = this.getQuestionIndex();
+    callback(currentIndex);
+  };
+
+  notifyUIQuizStarted = (callback) => {
+    callback(this.isInProgress);
+  };
 }
 
 module.exports = Quiz;
