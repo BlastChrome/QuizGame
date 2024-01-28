@@ -68,6 +68,7 @@ class UI {
   };
 
   renderQuizSubjectIcon = (icon) => {
+    const ICON_TEXT = document.querySelector("#quiz-subject-text");
     const ICON_ELEMENTS = Array.from(
       document.querySelectorAll(".header__header-left__icon")
     );
@@ -77,6 +78,7 @@ class UI {
       )
     );
     FOUND_ELEMENT.classList.add("active");
+    ICON_TEXT.innerHTML = icon;
   };
 
   renderProgressNumber = (index) => {
