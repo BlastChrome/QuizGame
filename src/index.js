@@ -16,9 +16,7 @@ const main = (() => {
   ui.renderStartScreenElements();
   // load the quiz based on the button input
   ui.onQuizSelection((index) => {
-    console.log(index);
     if (index !== -1) {
-      ui.resetEventListeners();
       quiz.loadQuiz(data.quizzes[index]);
       quiz.notifyUIQuizStarted((inProgress) => {
         ui.setQuizInProgress(inProgress);
@@ -29,6 +27,11 @@ const main = (() => {
       quiz.provideCurrentQuestionIndexToUI((index) => {
         ui.renderProgressNumber(index);
       });
+      quiz.provideCurrentSubjectToUI((icon) => {
+        ui.renderQuizSubjectIcon(icon);
+      });
+
+      ui.resetEventListeners();
     }
   });
 })();

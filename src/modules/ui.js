@@ -14,17 +14,19 @@ class UI {
 
     this.quizSelectionHandler = (e) => this.handleQuizSelection(e);
   }
+
   setQuizInProgress = (isInProgress) => {
     this.isQuizStarted = isInProgress;
   };
 
+  // Event Handler Methods
   handleQuizSelection = (e) => {
     const button = e.target.closest("button");
     const clickedButtonIndex = Array.prototype.indexOf.call(
       this.selectionButtons.children,
       button
     );
-    // stops the user from selecting another quiz while it's in progress
+    // stops the user from selecting another quiz while it hs in progress
     if (this.isQuizStarted) return null;
     // passes the index of the button to a callback
     this.onQuizSelectionCallback(clickedButtonIndex);
@@ -41,10 +43,13 @@ class UI {
       "click",
       this.quizSelectionHandler
     );
-    // You can add new listeners here as needed,
-    // or set up a separate method to add them based on the application state
+    Array.from(this.selectionButtons.children).forEach((button) => {
+      if (button.dataset.optionGroup == "quiz-options") {
+      }
+    });
   };
 
+  //Rendering Methods
   renderQuestion = (questionObject) => {
     this.hideStartScreenElements();
     this.renderInProgressElements();
@@ -60,6 +65,18 @@ class UI {
       const optionsText = button.querySelector("h3");
       optionsText.innerHTML = questionObject.options[index];
     });
+  };
+
+  renderQuizSubjectIcon = (icon) => {
+    const ICON_ELEMENTS = Array.from(
+      document.querySelectorAll(".header__header-left__icon")
+    );
+    const FOUND_ELEMENT = ICON_ELEMENTS.find((elem) =>
+      elem.classList.contains(
+        `header__header-left__icon--${icon.toLowerCase()}`
+      )
+    );
+    FOUND_ELEMENT.classList.add("active");
   };
 
   renderProgressNumber = (index) => {

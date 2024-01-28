@@ -11,11 +11,6 @@
         justify-content: space-between;
         max-width: 167px;
         width: 100%;
-        opacity: 0;
-
-        &.active {
-            opacity: 1;
-        }
 
         &__icon {
             padding: 0.356875rem 0;
@@ -26,6 +21,24 @@
             align-items: center;
             justify-content: center;
             border-radius: 5px;
+            display: none;
+
+
+            &--html {
+                background-color: $html-bg-color;
+            }
+
+            &--css {
+                background-color: $css-bg-color;
+            }
+
+            &--javascript {
+                background-color: $js-bg-color;
+            }
+
+            &--accessibility {
+                background-color: $ada-bg-color;
+            }
         }
     }
 }

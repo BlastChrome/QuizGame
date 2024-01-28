@@ -181,6 +181,11 @@ class Quiz {
     callback(currentIndex);
   };
 
+  provideCurrentSubjectToUI = (callback) => {
+    const SUBJECT = this.getCurrentQuiz().title;
+    callback(SUBJECT);
+  };
+
   notifyUIQuizStarted = (callback) => {
     callback(this.isInProgress);
   };
