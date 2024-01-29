@@ -33,15 +33,35 @@ class UI {
 
   handleOptionSelection = (e) => {
     const clickedButton = e.target.closest("button");
-    const optionButtons = Array.from(this.selectionButtons.children).filter(
-      (button) => button.dataset.optionGroup == "quiz-options"
-    );
-    if (clickedButton.classList.contains("submit")) {
-      return;
+
+    // if the clicked button is an option button, add the css selected class
+    if (clickedButton.dataset.optionGroup == "quiz-options") {
+      this.addButtonSelectedClass(clickedButton);
+
+      // if the submit button was pressed, submit the selected answer
+    } else {
+      const selectedButton = this.getSelectionButtonsArray().find((button) =>
+        button.classList.contains("choice__selector--selected")
+      );
+      // if the there's no selected button, do nothing
+      if (!selectedButton) return;
+
+      // finally submit the selected answer
+      const selectedText = selectedButton.querySelector("h3").innerText;
+      this.onOptionSelectionCallback(selectedText);
     }
+  };
+
+  addButtonSelectedClass = (clickedButton) => {
+    // filters down to the option buttons [A-D]
+    const optionButtons = this.getSelectionButtonsArray();
+
+    // remove the selected class from all buttons at the start
     optionButtons.forEach((button) => {
       button.classList.remove("choice__selector--selected");
     });
+
+    // add the selected class to the clicked button
     clickedButton.classList.add("choice__selector--selected");
   };
 
@@ -49,6 +69,7 @@ class UI {
     this.onQuizSelectionCallback = callback;
     this.selectionButtons.addEventListener("click", this.handleQuizSelection);
   };
+
   initOnSelectionListeners = (callback) => {
     this.onOptionSelectionCallback = callback;
     this.selectionButtons.addEventListener("click", this.handleOptionSelection);
@@ -62,6 +83,12 @@ class UI {
     );
   };
 
+  getSelectionButtonsArray = () => {
+    return Array.from(this.selectionButtons.children).filter(
+      (button) => button.dataset.optionGroup == "quiz-options"
+    );
+  };
+
   //Rendering Methods
   renderQuestion = (questionObject) => {
     this.hideStartScreenElements();
@@ -69,9 +96,7 @@ class UI {
     this.questionText.innerText = questionObject.question;
 
     // filter the [A-D] buttons
-    const optionButtons = Array.from(this.selectionButtons.children).filter(
-      (button) => button.dataset.optionGroup == "quiz-options"
-    );
+    const optionButtons = this.getSelectionButtonsArray();
 
     // Update the text inside the buttons to a question
     optionButtons.forEach((button, index) => {
