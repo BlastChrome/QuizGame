@@ -32,6 +32,9 @@ const main = (() => {
       });
 
       ui.resetEventListeners();
+      ui.initOnSelectionListeners((option) => {
+        quiz.selectOption(option);
+      });
     }
   });
 })();

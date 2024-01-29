@@ -11,7 +11,6 @@ class UI {
     this.lastClickedButtonIndex = null;
     this.questionText = document.getElementById("question");
     this.progressNumber = document.getElementById("progress-number");
-
     this.quizSelectionHandler = (e) => this.handleQuizSelection(e);
   }
 
@@ -32,9 +31,27 @@ class UI {
     this.onQuizSelectionCallback(clickedButtonIndex);
   };
 
+  handleOptionSelection = (e) => {
+    const clickedButton = e.target.closest("button");
+    const optionButtons = Array.from(this.selectionButtons.children).filter(
+      (button) => button.dataset.optionGroup == "quiz-options"
+    );
+    if (clickedButton.classList.contains("submit")) {
+      return;
+    }
+    optionButtons.forEach((button) => {
+      button.classList.remove("choice__selector--selected");
+    });
+    clickedButton.classList.add("choice__selector--selected");
+  };
+
   onQuizSelection = (callback) => {
     this.onQuizSelectionCallback = callback;
     this.selectionButtons.addEventListener("click", this.handleQuizSelection);
+  };
+  initOnSelectionListeners = (callback) => {
+    this.onOptionSelectionCallback = callback;
+    this.selectionButtons.addEventListener("click", this.handleOptionSelection);
   };
 
   resetEventListeners = () => {
@@ -43,10 +60,6 @@ class UI {
       "click",
       this.quizSelectionHandler
     );
-    Array.from(this.selectionButtons.children).forEach((button) => {
-      if (button.dataset.optionGroup == "quiz-options") {
-      }
-    });
   };
 
   //Rendering Methods
@@ -60,7 +73,7 @@ class UI {
       (button) => button.dataset.optionGroup == "quiz-options"
     );
 
-    // Update the text inside the buttons to question
+    // Update the text inside the buttons to a question
     optionButtons.forEach((button, index) => {
       const optionsText = button.querySelector("h3");
       optionsText.innerHTML = questionObject.options[index];
