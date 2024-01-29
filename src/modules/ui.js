@@ -20,49 +20,48 @@ class UI {
 
   // Event Handler Methods
   handleQuizSelection = (e) => {
-    const button = e.target.closest("button");
-    const clickedButtonIndex = Array.prototype.indexOf.call(
+    const BUTTON = e.target.closest("button");
+    const CLICKED_BUTTON_INDEX = Array.prototype.indexOf.call(
       this.selectionButtons.children,
-      button
+      BUTTON
     );
     // stops the user from selecting another quiz while it hs in progress
     if (this.isQuizStarted) return null;
     // passes the index of the button to a callback
-    this.onQuizSelectionCallback(clickedButtonIndex);
+    this.onQuizSelectionCallback(CLICKED_BUTTON_INDEX);
   };
 
   handleOptionSelection = (e) => {
-    const clickedButton = e.target.closest("button");
+    const CLICKED_BUTTON = e.target.closest("button");
 
     // if the clicked button is an option button, add the css selected class
-    if (clickedButton.dataset.optionGroup == "quiz-options") {
-      this.addButtonSelectedClass(clickedButton);
+    if (CLICKED_BUTTON.dataset.optionGroup == "quiz-options") {
+      this.addButtonSelectedClass(CLICKED_BUTTON);
 
       // if the submit button was pressed, submit the selected answer
     } else {
-      const selectedButton = this.getSelectionButtonsArray().find((button) =>
+      const SELECTED_BUTTON = this.getSelectionButtonsArray().find((button) =>
         button.classList.contains("choice__selector--selected")
       );
       // if the there's no selected button, do nothing
-      if (!selectedButton) return;
+      if (!SELECTED_BUTTON) return;
 
       // finally submit the selected answer
-      const selectedText = selectedButton.querySelector("h3").innerText;
-      this.onOptionSelectionCallback(selectedText);
+      const SELECTED_BUTTON_TEXT =
+        SELECTED_BUTTON.querySelector("h3").innerText;
+      this.onOptionSelectionCallback(SELECTED_BUTTON_TEXT);
     }
   };
 
   addButtonSelectedClass = (clickedButton) => {
     // filters down to the option buttons [A-D]
-    const optionButtons = this.getSelectionButtonsArray();
-
+    const OPTION_BUTTONS = this.getSelectionButtonsArray();
     // remove the selected class from all buttons at the start
-    optionButtons.forEach((button) => {
-      button.classList.remove("choice__selector--selected");
+    OPTION_BUTTONS.forEach((button) => {
+      this.modifyElement(button, "remove", "choice__selector--selected");
     });
-
     // add the selected class to the clicked button
-    clickedButton.classList.add("choice__selector--selected");
+    this.modifyElement(clickedButton, "add", "choice__selector--selected");
   };
 
   onQuizSelection = (callback) => {
@@ -96,12 +95,12 @@ class UI {
     this.questionText.innerText = questionObject.question;
 
     // filter the [A-D] buttons
-    const optionButtons = this.getSelectionButtonsArray();
+    const OPTION_BUTTONS = this.getSelectionButtonsArray();
 
     // Update the text inside the buttons to a question
-    optionButtons.forEach((button, index) => {
-      const optionsText = button.querySelector("h3");
-      optionsText.innerHTML = questionObject.options[index];
+    OPTION_BUTTONS.forEach((button, index) => {
+      const OPTIONS_TEXT = button.querySelector("h3");
+      OPTIONS_TEXT.innerHTML = questionObject.options[index];
     });
   };
 
