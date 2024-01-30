@@ -11,7 +11,6 @@ class UI {
     this.lastClickedButtonIndex = null;
     this.questionText = document.getElementById("question");
     this.progressNumber = document.getElementById("progress-number");
-    this.quizSelectionHandler = (e) => this.handleQuizSelection(e);
   }
 
   setQuizInProgress = (isInProgress) => {
@@ -69,7 +68,7 @@ class UI {
     this.selectionButtons.addEventListener("click", this.handleQuizSelection);
   };
 
-  initOnSelectionListeners = (callback) => {
+  onOptionSelection = (callback) => {
     this.onOptionSelectionCallback = callback;
     this.selectionButtons.addEventListener("click", this.handleOptionSelection);
   };

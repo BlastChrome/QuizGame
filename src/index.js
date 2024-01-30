@@ -12,30 +12,43 @@ const main = (() => {
   const themeController = new ThemeController();
   const ui = new UI();
 
-  // load the quiz based on the button input
-  ui.renderStartScreenElements();
+  const initalizeStartScreen = () => {
+    ui.renderStartScreenElements();
+  };
+
+  const loadQuiz = (index) => {
+    quiz.loadQuiz(data.quizzes[index]);
+    quiz.notifyUIQuizStarted((inProgress) => {
+      ui.setQuizInProgress(inProgress);
+    });
+  };
+
+  const renderQuestion = () => {
+    quiz.provideCurrentQuestionToUI((questionObject) => {
+      ui.renderQuestion(questionObject);
+    });
+    quiz.provideCurrentQuestionIndexToUI((index) => {
+      ui.renderProgressNumber(index);
+    });
+    quiz.provideCurrentSubjectToUI((icon) => {
+      ui.renderQuizSubjectIcon(icon);
+    });
+
+    ui.resetEventListeners();
+    ui.onOptionSelection((option) => {
+      quiz.selectOption(option);
+      // quiz.notifyUISelectionResult();
+    });
+  };
+
+  //shows the start screen on load
+  initalizeStartScreen();
+
   // load the quiz based on the button input
   ui.onQuizSelection((index) => {
     if (index !== -1) {
-      quiz.loadQuiz(data.quizzes[index]);
-      quiz.notifyUIQuizStarted((inProgress) => {
-        ui.setQuizInProgress(inProgress);
-      });
-      quiz.provideCurrentQuestionToUI((questionObject) => {
-        ui.renderQuestion(questionObject);
-      });
-      quiz.provideCurrentQuestionIndexToUI((index) => {
-        ui.renderProgressNumber(index);
-      });
-      quiz.provideCurrentSubjectToUI((icon) => {
-        ui.renderQuizSubjectIcon(icon);
-      });
-
-      ui.resetEventListeners();
-      ui.initOnSelectionListeners((option) => {
-        quiz.selectOption(option);
-        // quiz.notifyUISelectionResult();
-      });
+      loadQuiz(index);
+      renderQuestion();
     }
   });
 })();
