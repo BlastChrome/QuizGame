@@ -33,11 +33,10 @@ const main = (() => {
     quiz.provideCurrentSubjectToUI((icon) => {
       ui.renderQuizSubjectIcon(icon);
     });
-
     ui.resetEventListeners();
     ui.onOptionSelection((option) => {
-      quiz.selectOption(option);
-      // quiz.notifyUISelectionResult();
+      const RESULTS = quiz.selectOption(option);
+      ui.renderSelectionResults(RESULTS);
     });
   };
 

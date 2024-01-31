@@ -88,6 +88,21 @@ class UI {
   };
 
   //Rendering Methods
+  renderSelectionResults = (results) => {
+    const OPTION_BUTTONS = this.getSelectionButtonsArray();
+
+    const SELECTED_BUTTON = OPTION_BUTTONS.find((button) =>
+      button.classList.contains("choice__selector--selected")
+    );
+
+    this.modifyElement(SELECTED_BUTTON, "remove", "choice__selector--selected");
+    if (results) {
+      this.modifyElement(SELECTED_BUTTON, "add", "choice__selector--pass");
+    } else {
+      this.modifyElement(SELECTED_BUTTON, "add", "choice__selector--fail");
+    }
+  };
+
   renderQuestion = (questionObject) => {
     this.hideStartScreenElements();
     this.renderInProgressElements();
