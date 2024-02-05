@@ -39,14 +39,18 @@ const main = (() => {
 
   // the main method for quiz loop
   const quizMain = () => {
+    console.log("here");
     ui.onOptionSelection((option) => {
       ui.renderSelectionResults(quiz.selectOption(option));
       // after an option is chosen disable the buttons
       ui.resetOptionSelectListeners();
       // initialize the progress button
-      ui.onNextClick(displayCurrentQuestion);
-
-      // ui.resetNextClickListener();
+      ui.onNextClick(() => {
+        ui.resetOnNextClickListener();
+        ui.initializeOptionSelectListeners();
+        // progress to the next question
+        displayCurrentQuestion();
+      });
     });
   };
 
@@ -60,6 +64,7 @@ const main = (() => {
       // displays the first question when the quiz is initially loaded
       displayCurrentQuestion();
 
+      //
       quizMain();
     }
   });

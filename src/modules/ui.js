@@ -80,6 +80,10 @@ class UI {
     this.selectionButtons.addEventListener("click", this.handleOptionSelection);
   };
 
+  initializeOptionSelectListeners = () => {
+    this.selectionButtons.addEventListener("click", this.handleOptionSelection);
+  };
+
   onNextClick = (callback) => {
     this.onNextClickCallback = callback;
     this.submit_button.addEventListener("click", this.handleNextClick);
@@ -99,6 +103,10 @@ class UI {
       "click",
       this.handleOptionSelection
     );
+  };
+
+  resetOnNextClickListener = () => {
+    this.submit_button.removeEventListener("click", this.handleNextClick);
   };
 
   getSelectionButtonsArray = () => {
@@ -140,6 +148,9 @@ class UI {
     // clear any prior classes from the previous question
     OPTION_BUTTONS.forEach((button) => this.clearButtonClasses(button));
 
+    // set the text within the submit button to submit
+    this.submit_button.innerText = "Submit";
+
     // Update the text inside the buttons to a question
     OPTION_BUTTONS.forEach((button, index) => {
       const OPTIONS_TEXT = button.querySelector("h3");
@@ -170,7 +181,6 @@ class UI {
     const classesToRemove = Array.from(this.progressBar.classList).filter(
       (className) => regex.test(className)
     );
-    console.log(classesToRemove);
     classesToRemove.forEach((className) =>
       this.progressBar.classList.remove(className)
     );
