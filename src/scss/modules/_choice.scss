@@ -80,7 +80,7 @@ body {
         border: 3px solid transparent;
         background-color: $white;
         transition: border 0.2s ease-in-out;
-
+        padding-right: 40px;
 
         &--pass,
         &--fail {
@@ -103,7 +103,7 @@ body {
             background-size: contain;
             background-repeat: no-repeat;
             padding: 4px;
-            transform: translate(-33%, 56%);
+            transform: translate(-30%, 100%);
         }
 
         &--pass:after {

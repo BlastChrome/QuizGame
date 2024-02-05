@@ -21,22 +21,32 @@ const main = (() => {
     quiz.notifyUIQuizStarted((inProgress) => {
       ui.setQuizInProgress(inProgress);
     });
+    ui.resetQuizSelectionEventListeners();
   };
 
-  const renderQuestion = () => {
+  const displayCurrentQuestion = () => {
     quiz.provideCurrentQuestionToUI((questionObject) => {
       ui.renderQuestion(questionObject);
     });
     quiz.provideCurrentQuestionIndexToUI((index) => {
       ui.renderProgressNumber(index);
+      ui.renderProgressBar(index);
     });
     quiz.provideCurrentSubjectToUI((icon) => {
       ui.renderQuizSubjectIcon(icon);
     });
-    ui.resetEventListeners();
+  };
+
+  // the main method for quiz loop
+  const quizMain = () => {
     ui.onOptionSelection((option) => {
-      const RESULTS = quiz.selectOption(option);
-      ui.renderSelectionResults(RESULTS);
+      ui.renderSelectionResults(quiz.selectOption(option));
+      // after an option is chosen disable the buttons
+      ui.resetOptionSelectListeners();
+      // initialize the progress button
+      ui.onNextClick(displayCurrentQuestion);
+
+      // ui.resetNextClickListener();
     });
   };
 
@@ -47,7 +57,10 @@ const main = (() => {
   ui.onQuizSelection((index) => {
     if (index !== -1) {
       loadQuiz(index);
-      renderQuestion();
+      // displays the first question when the quiz is initially loaded
+      displayCurrentQuestion();
+
+      quizMain();
     }
   });
 })();
